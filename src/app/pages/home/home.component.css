@@ -1,0 +1,10 @@
+.color-grey-900 {
+    color: var(--grey-900);
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 32px;
+}

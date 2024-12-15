@@ -1,0 +1,20 @@
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    border-radius: 8px;
+    background-color: var(--beige-100);
+}
+
+.btn:hover {
+    border-radius: 8px;
+    border: 1px solid var(--beige-100);
+    background-color: var(--white);
+}
+
+.btn-color {
+    color: var(--grey-900);
+}

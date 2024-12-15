@@ -1,0 +1,29 @@
+
+    <div class="doughnut-chart text-align-center">
+        <svg width="200px" height="200px" viewBox="0 0 42 42" class="donut">
+           
+            <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
+           
+          
+
+            <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" [attr.stroke]="color1" stroke-width="4" [attr.stroke-dasharray]="arr[0]" [attr.stroke-dashoffset]="offsets[0]"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" [attr.stroke]="color2" stroke-width="4" [attr.stroke-dasharray]="arr[1]" [attr.stroke-dashoffset]="offsets[1]"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" [attr.stroke]="color3" stroke-width="4" [attr.stroke-dasharray]="arr[2]" [attr.stroke-dashoffset]="offsets[2]"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" [attr.stroke]="color4" stroke-width="4" [attr.stroke-dasharray]="arr[3]" [attr.stroke-dashoffset]="offsets[3]"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="13.8464" fill="transparent" [attr.stroke]="color1" stroke-width="2" [attr.stroke-dasharray]="arr2[0]" [attr.stroke-dashoffset]="opacitiesOffsets[0]" stroke-opacity="0.25"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="13.8464" fill="transparent" [attr.stroke]="color2" stroke-width="2" [attr.stroke-dasharray]="arr2[1]" [attr.stroke-dashoffset]="opacitiesOffsets[1]" stroke-opacity="0.25"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="13.8464" fill="transparent" [attr.stroke]="color3" stroke-width="2" [attr.stroke-dasharray]="arr2[2]" [attr.stroke-dashoffset]="opacitiesOffsets[2]" stroke-opacity="0.25"></circle>
+            <circle class="donut-segment" cx="21" cy="21" r="13.8464" fill="transparent" [attr.stroke]="color4" stroke-width="2" [attr.stroke-dasharray]="arr2[3]" [attr.stroke-dashoffset]="opacitiesOffsets[3]" stroke-opacity="0.25"></circle>    
+           
+<!-- unused 10% -->
+    <text x="50%" y="50%" font-size="24px" class="text-preset-1" [ngClass]="{'chart-number-3': amountSpent.length == 3, 'chart-number-4': amountSpent.length == 4, 'chart-number-5': amountSpent.length == 5, 'chart-number-6': amountSpent.length == 6, 'chart-number-7': amountSpent.length == 7}">
+      ${{amountSpent | money}}
+    </text>
+    <text x="50%" y="50%" font-size="16px"  class="chart-label text-preset-5">
+        of ${{budget | money}} limit
+    </text>
+
+        </svg>
+    </div>
+
+   

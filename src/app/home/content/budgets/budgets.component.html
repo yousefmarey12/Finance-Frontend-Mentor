@@ -1,0 +1,18 @@
+<div class="container br bg-white px-250 py-300">
+    <app-header [title]="'Budgets'">See Details</app-header>
+    <app-doughnut-chart [color1]="'#277C78'" [color2]="'#626070'"[color3]="'#82C9D7'" [color4]="'#F2CDAC'" [amountSpent]="'331'" [budget]="'975'" [arr]="arr" [lengths]="lengths" [arr2]="arr2" [lengths2]="lengths2"></app-doughnut-chart>
+    <div class="cards">
+        <div class="top-left mt-250">
+            <app-mini-card [color]="'#277C78'" [title]="'Entertainment'" [amount]="'50.00'"></app-mini-card>
+        </div>
+        <div class="top-right mt-250">
+            <app-mini-card [color]="'#82C9D7'" [title]="'Bills'" [amount]="'750.00'"></app-mini-card>
+        </div>
+        <div class="bottom-left mt-200">
+            <app-mini-card [color]="'#F2CDAC'" [title]="'Dining out'" [amount]="'75.00'"></app-mini-card>
+        </div>
+        <div class="bottom-right mt-200">
+            <app-mini-card [color]="'#626070'" [title]="'Personal Care'" [amount]="'100.00'"></app-mini-card>
+        </div>
+    </div>
+</div>

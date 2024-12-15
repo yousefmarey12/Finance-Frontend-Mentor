@@ -1,0 +1,36 @@
+.img-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    background: url("/emma-richardson.jpg") lightgray 50% / cover no-repeat;
+}
+
+
+.green {
+    color: var(--secondary-green);
+}
+
+.black {
+    color: var(--grey-900);
+}
+
+.value {
+    width: fit-content;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grey {
+    color: var(--grey-500);
+}

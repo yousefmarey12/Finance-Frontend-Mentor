@@ -1,0 +1,13 @@
+
+    <div class="container mt-250 mx-auto">
+    <div class="img-title w-fit-content">
+        <div class="profile-pic">
+
+        </div>
+        <p class="text-preset-4-bold ml-200">{{ person }}</p>
+    </div>
+    <div class="value text-preset-4-bold text-align-right w-fit-content {{isCredit ? 'green' : 'black'}}">
+        <p>{{isCredit ? '+' : '-'}}${{amount | money}}</p>
+        <p class="mt-100 text-preset-5 grey">19 Aug 2024</p>
+    </div>
+</div>
