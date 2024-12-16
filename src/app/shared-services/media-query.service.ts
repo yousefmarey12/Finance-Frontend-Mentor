@@ -1,14 +1,23 @@
 
 import { Injectable } from '@angular/core';
-import { Observable, fromEvent, map, startWith } from 'rxjs';
+import { Observable, fromEvent, map, startWith, Subject } from 'rxjs';
+import { MediaQuery } from '../shared-interfaces/media-query.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MediaQueryService {
     // important breakpoints that we care about
+
+    viewports: Subject<MediaQuery> = new Subject<MediaQuery>() 
+  
+
+  
+      
   private readonly BREAKPOINTS = {
-    sm: '640px',
+    lg: '1440px',
+    md: '768px',
+    sm: '0px',
   }
 
   private activeMediaQueries: {[key: string]: Observable<boolean>} = {}
@@ -24,6 +33,8 @@ export class MediaQueryService {
             - we need to specify whether it's min or max because that's what the mq-Text uses which we use in fromEvent.
             - we need a break to be the key in the BREAKPOINTS member.
     */
+
+    
    
     const mediaId = `${type}-${breakPoint}`;
 
@@ -51,4 +62,71 @@ export class MediaQueryService {
     this.activeMediaQueries[mediaId] = dynamicMediaQuery;
     return dynamicMediaQuery;
   }
-}
+
+  setViewPort() {
+    this.mediaQuery('min', 'sm').pipe(map(
+      matches => {
+        if (matches)  {
+          return this.mediaQuery('max', 'md')
+        }
+        else {
+          return false;
+        }
+      }
+     )).subscribe((matches) => {
+      if (matches) {
+       this.viewports.next({
+        isMobile: true,
+        isTablet: false,
+        isDesktop: false
+       })
+ 
+      }
+     })
+   
+     this.mediaQuery('min', 'md').pipe(map(
+      matches => {
+        console.log("matches is")
+        console.log(matches)
+        if (matches) {
+          return this.mediaQuery('max', 'lg')
+        } 
+        else {
+          return false;
+        }
+      }
+     )).subscribe((matches) => {
+      if (matches) {
+        this.viewports.next({
+          isMobile: false,
+          isTablet: true,
+          isDesktop: false
+         })
+      
+      }
+      else {
+        this.viewports.next({
+          isMobile: true,
+          isTablet: false,
+          isDesktop: false
+         })
+      }
+
+     })
+    
+     this.mediaQuery('min', 'lg').subscribe((matches) => {
+      if (matches) {
+        this.viewports.next({
+          isMobile: false,
+          isTablet: false,
+          isDesktop: true
+         })
+      }
+     
+     })
+     
+    }
+  
+  }
+
+

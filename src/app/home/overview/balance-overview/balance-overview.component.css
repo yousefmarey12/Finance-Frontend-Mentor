@@ -1,35 +1,36 @@
-.flex {
+
+.flex-mobile {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-self: stretch;
-    gap: 12px;
-    width: 100%;
-}
-
-.flex-md {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-self: stretch;
-    gap: 12px;
-    width: 100%;
-}
-
-.flex-lg {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-self: stretch;
-    gap: 12px;
-    width: 100%;
-}
-
-.flex-row {
-    flex-direction: row;
-}
-
-.flex-column {
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-self: stretch;
+    gap: 12px;
+    width: 100%;
+}
+
+.flex-tablet {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 24px;
+    
+}
+
+.flex-desktop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-self: stretch;
+    gap: 12px;
+    width: 100%;
+}
+.flex {
+    max-width: 1440px;
+
+}
+.flex > * {
+    width: fit-content;
 }
 

@@ -1,4 +1,4 @@
-<div class="mx-200 my-300 flex">
+<div class="flex" [ngClass]="{'mx-200 my-300': viewports.isMobile, 'tablet my-400 mx-500': viewports.isTablet, 'desktop my-400 mx-500': viewports.isDesktop}">
     <h1 class="text-preset-1">Overview</h1>
     <app-balance-overview></app-balance-overview>
     <app-pots></app-pots>
