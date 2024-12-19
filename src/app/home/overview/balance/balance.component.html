@@ -1,4 +1,7 @@
-<div class="br p-300 w-100  {{isDark ? 'bg-grey' : 'bg-white'}}">
-    <p class=" {{isDark ? '' : 'color-grey-500'}} "  [ngClass]="{'text-preset-4': viewports.isMobile, 'tablet text-preset-5': viewports.isTablet, 'desktop text-preset-5': viewports.isDesktop}">{{subtitle}}</p>
-    <h1 class="{{isDark ? '' : 'color-grey-900'}}" [ngClass]="{'text-preset-1': viewports.isMobile, 'tablet text-preset-2': viewports.isTablet, 'desktop text-preset-2': viewports.isDesktop}">${{amount | money }}</h1>
+<div class="br p-300  {{isDark ? 'bg-grey' : 'bg-white'}}" >
+    <p class="text-preset-4 {{isDark ? '' : 'color-grey-500'}} " >{{subtitle}}</p>
+    <div class="flex" >
+        <h1 class="text-preset-1 flex {{isDark ? '' : 'color-grey-900'}}" >${{amount | money }}</h1>
+    </div>
+
 </div>

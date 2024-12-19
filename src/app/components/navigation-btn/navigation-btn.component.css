@@ -1,0 +1,19 @@
+.container-nav-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    align-items: center;
+    width: 104px;
+}
+
+.active {
+    border-radius: 8px 8px 0 0;
+    background-color: var(--beige-100);
+    border-bottom: 4px solid var(--secondary-green, #277C78);
+    color: var(--grey-900);
+}
+
+.active path {
+    fill: #277C78;
+}

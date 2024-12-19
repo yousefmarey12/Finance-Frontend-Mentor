@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Observable, fromEvent, map, startWith, Subject } from 'rxjs';
+import { Observable, fromEvent, map, startWith, Subject, BehaviorSubject } from 'rxjs';
 import { MediaQuery } from '../shared-interfaces/media-query.interface';
 
 @Injectable({
@@ -9,13 +9,17 @@ import { MediaQuery } from '../shared-interfaces/media-query.interface';
 export class MediaQueryService {
     // important breakpoints that we care about
 
-    viewports: Subject<MediaQuery> = new Subject<MediaQuery>() 
+    viewports: BehaviorSubject<MediaQuery> = new BehaviorSubject<MediaQuery>({
+      isDesktop: false,
+      isTablet: false,
+      isMobile: false
+    }) 
   
 
   
       
   private readonly BREAKPOINTS = {
-    lg: '1440px',
+    lg: '1200px',
     md: '768px',
     sm: '0px',
   }
@@ -86,8 +90,6 @@ export class MediaQueryService {
    
      this.mediaQuery('min', 'md').pipe(map(
       matches => {
-        console.log("matches is")
-        console.log(matches)
         if (matches) {
           return this.mediaQuery('max', 'lg')
         } 
@@ -120,6 +122,12 @@ export class MediaQueryService {
           isMobile: false,
           isTablet: false,
           isDesktop: true
+         })
+      } else {
+        this.viewports.next({
+          isMobile: false,
+          isTablet: true,
+          isDesktop: false
          })
       }
      

@@ -23,7 +23,7 @@ export class BalanceComponent {
       isTablet: false
     }
     ngOnInit(): void {
-      console.log("2 should run before")
+    
       this.#mediaService.viewports.subscribe(viewports => {
         this.viewports.isDesktop = viewports.isDesktop
         this.viewports.isMobile = viewports.isMobile

@@ -101,6 +101,14 @@ h-100 {
     position: absolute;
 }
 
+.position-sticky {
+    position: sticky;
+}
+
+.position-fixed {
+    position: fixed;
+}
+
 .top-50 {
     top: 4px;
 }
@@ -250,7 +258,7 @@ h-100 {
 }
 .px-500 {
     padding-right: 40px;
-    padding-left: 340px;
+    padding-left: 40px;
 }
 
 .py-50 {
@@ -670,4 +678,8 @@ h-100 {
 
 .bg-white {
     background-color: var(--white);
+}
+
+.d-none {
+    display: none;
 }

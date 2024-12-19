@@ -4,6 +4,15 @@
     grid-template-rows: 1fr 2fr 1fr 1fr;
 }
 
+.grid-tablet {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 20px;
+}
+
+
+
 .card {
     grid-column-start: 1;
     grid-column-end: 9;
@@ -16,6 +25,48 @@
     background-color: var(--beige-100);
     border-radius: 12px;
     align-self: stretch;
+}
+
+.card-tablet {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--beige-100);
+    border-radius: 12px;
+    align-self: stretch;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.top-left-tablet {
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.top-right-tablet {
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.bottom-right-tablet {
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.bottom-left-tablet {
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 4;
 }
 
 .inner-card {
@@ -94,9 +145,9 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
-    justify-content: space-between;
-    height: fit-content;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;  
+    margin-bottom: 20px;
 }
 
 .bg-white {

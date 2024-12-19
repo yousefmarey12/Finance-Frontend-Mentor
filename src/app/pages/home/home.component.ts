@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, NgZone, OnInit } from '@angular/core';
 import { BalanceOverviewComponent } from '../../home/overview/balance-overview/balance-overview.component';
 import { PotsComponent } from '../../home/content/pots/pots.component';
 import { TransactionsComponent } from '../../home/content/transactions/transactions.component';
@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   #mediaQueryService = inject(MediaQueryService)
+  constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {}
   viewports: MediaQuery = {
       isDesktop: false,
       isMobile: false,
@@ -25,13 +26,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     
     this.#mediaQueryService.viewports.subscribe(viewports => {
-      console.log("viewports is")
-      console.log(viewports)
+      this.ngZone.run(() => {
+
+    
       this.viewports.isDesktop = viewports.isDesktop
       this.viewports.isMobile = viewports.isMobile
       this.viewports.isTablet = viewports.isTablet
-
+      this.cdr.detectChanges();
     })
-    console.log("3 should run before")
+    })
   }
 }

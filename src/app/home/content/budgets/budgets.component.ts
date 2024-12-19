@@ -1,16 +1,27 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { MiniCardComponent } from '../../../components/mini-card/mini-card.component';
 import { DoughnutChartComponent } from '../../../components/doughnut-chart/doughnut-chart.component';
+import { CommonModule } from '@angular/common';
+import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
+import { MediaQueryService } from '../../../shared-services/media-query.service';
 
 @Component({
   selector: 'app-budgets',
   standalone: true,
-  imports: [HeaderComponent, MiniCardComponent, DoughnutChartComponent],
+  imports: [HeaderComponent, MiniCardComponent, DoughnutChartComponent, CommonModule],
   templateUrl: './budgets.component.html',
   styleUrl: './budgets.component.css'
 })
 export class BudgetsComponent implements OnInit {
+
+  #mediaService = inject(MediaQueryService)
+    viewports: MediaQuery = {
+      isDesktop: false,
+      isMobile: false,
+      isTablet: false
+    }
+
   @Input() arrNums: number[] = [135, 24, 43, 43]
   arr2: string[] = []
   arr!: string[];
@@ -30,6 +41,12 @@ export class BudgetsComponent implements OnInit {
 
 }
   ngOnInit(): void {
+    this.#mediaService.viewports.subscribe(viewports => {
+      this.viewports.isDesktop = viewports.isDesktop
+      this.viewports.isMobile = viewports.isMobile
+      this.viewports.isTablet = viewports.isTablet
+    })
+
     this.arr2 = this.arrNums.map(el => el.toString())
     this.arrNums = this.calculateArr(this.arrNums);
     this.lengths = this.arrNums
