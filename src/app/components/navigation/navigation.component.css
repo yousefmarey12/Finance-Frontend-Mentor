@@ -6,23 +6,76 @@
     border-radius: 8px 8px 0 0;
     color: var(--grey-300);
 }
-.active {
+
+
+.container-mobile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--grey-900);
+    border-radius: 8px 8px 0 0;
+    color: var(--grey-300);
+}
+
+.active-tablet {
     border-radius: 8px 8px 0 0;
     background-color: var(--beige-100);
     border-bottom: 4px solid var(--secondary-green, #277C78);
     color: var(--grey-900);
 }
 
-.active path {
+.active-mobile {
+    border-radius: 8px 8px 0 0;
+    background-color: var(--beige-100);
+    border-bottom: 4px solid var(--secondary-green, #277C78);
+    color: var(--grey-900);
+}
+
+.active-desktop {
+    background-color: var(--beige-100);
+    border-left: 4px solid var(--secondary-green, #277C78);
+    color: var(--grey-900);
+    border-radius: 0 12px 12px 0;
+}
+
+.container-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+.active-tablet path {
     fill: #277C78;
 }
 
-.coordinates {
+.active-desktop path {
+    fill: #277C78;
+}
+
+.active-mobile path {
+    fill: #277C78;
+}
+
+.coordinates-tablet {
     bottom: 0;
     width: 100%;
 }
 
-.document-container {
+
+
+.document-container-tablet {
     width: 100%;
     height: 80px;
+}
+
+.document-container-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: var(--grey-900);
+    border-radius: 0 16px 16px 0;
+    color: var(--grey-300);
 }

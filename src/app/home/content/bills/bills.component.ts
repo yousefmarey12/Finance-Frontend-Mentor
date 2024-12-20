@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { BillComponent } from '../../../components/bill/bill.component';
 import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-bills',
@@ -13,19 +14,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './bills.component.css'
 })
 export class BillsComponent {
- #mediaService = inject(MediaQueryService)
-  viewports: MediaQuery = {
-    isDesktop: false,
-    isMobile: false,
-    isTablet: false
-  }
-  ngOnInit(): void {
-  
-    this.#mediaService.viewports.subscribe(viewports => {
-      this.viewports.isDesktop = viewports.isDesktop
-      this.viewports.isMobile = viewports.isMobile
-      this.viewports.isTablet = viewports.isTablet
-    })
-
-  }
+  #mediaQueryService = inject(MediaQueryService)
+          isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+          isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+          isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
+     
 }

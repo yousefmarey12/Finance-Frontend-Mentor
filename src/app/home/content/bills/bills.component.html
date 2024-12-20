@@ -1,8 +1,14 @@
-<div  [ngClass]="{'container br bg-white p-300 mt-300': viewports.isMobile || viewports.isTablet, 'container br bg-white p-400': viewports.isDesktop}">
+<!-- 
+    'container br bg-white' are not implemented even when on mobile or tablet (they exist.)
+--> 
+<div class="container br bg-white" [ngClass]="{'p-300 mt-300': (isMobile() || isTablet()), 'p-400': isDesktop()}">
     <app-header [title]="'Recurring Bills'">See Details</app-header>
     <div class="flex mt-400">
         <app-bill [amount]="'$190.00'" [title]="'Paid Bills'" [color]="'#277C78'"></app-bill>
         <app-bill [amount]="'$194.98'" [title]="'Total Upcoming'" [color]="'#F2CDAC'"></app-bill>
         <app-bill [amount]="'$59.98'" [title]="'Due Soon'" [color]="'#82C9D7'"></app-bill>
     </div>
+</div>
+<div class="text-preset-1">
+   
 </div>

@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TertiaryComponent } from '../../../components/buttons/tertiary/tertiary.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
+import { toSignal } from '@angular/core/rxjs-interop';
 export interface Transaction {
   isCredit: boolean,
   person: string,
@@ -27,19 +28,8 @@ export class TransactionsComponent {
       {isCredit: false, person: "Urban Services Hub", amount: "65.00", date: "17 Aug 2024"},
     ]
 
-     #mediaService = inject(MediaQueryService)
-      viewports: MediaQuery = {
-        isDesktop: false,
-        isMobile: false,
-        isTablet: false
-      }
-      ngOnInit(): void {
-      
-        this.#mediaService.viewports.subscribe(viewports => {
-          this.viewports.isDesktop = viewports.isDesktop
-          this.viewports.isMobile = viewports.isMobile
-          this.viewports.isTablet = viewports.isTablet
-        })
-    
-}
+      #mediaQueryService = inject(MediaQueryService)
+         isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+         isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+         isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
 }

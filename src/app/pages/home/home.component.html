@@ -1,7 +1,7 @@
-<div [ngClass]="{'mx-200 my-300 flex': viewports.isMobile, 'flex tablet my-400 mx-500': viewports.isTablet, 'flex desktop my-400 mx-500': viewports.isDesktop}">
+<div class="flex my-400 mx-500" [ngClass]="{'mx-200 my-300': isMobile(), 'tablet': isTablet(), 'desktop': isDesktop()}">
     <h1  class="text-preset-1">Overview</h1>
     <app-balance-overview ></app-balance-overview>
-    <div class="flex" [ngClass]="{'flex': viewports.isMobile || viewports.isTablet, 'grid': viewports.isDesktop}">
+    <div  [ngClass]="{'flex': isMobile() || isTablet(), 'grid': isDesktop()}">
     <app-pots class="grid-child-1"></app-pots>
     <app-transactions class="grid-child-2"></app-transactions>
     <app-budgets class="grid-child-3"></app-budgets>

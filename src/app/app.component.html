@@ -1,4 +1,4 @@
-<div class="app-container position-relative">
-    <app-home ></app-home>
-    <app-navigation class="{{viewports.isTablet ? '' : 'd-none'}}"></app-navigation>
+<div class="app-container position-relative" [ngClass]="{'layout-desktop': isDesktop()}">
+    <app-home class="w-100"></app-home>
+    <app-navigation></app-navigation>
 </div>

@@ -1,10 +1,11 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { MiniCardComponent } from '../../../components/mini-card/mini-card.component';
 import { DoughnutChartComponent } from '../../../components/doughnut-chart/doughnut-chart.component';
 import { CommonModule } from '@angular/common';
 import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-budgets',
@@ -27,6 +28,10 @@ export class BudgetsComponent implements OnInit {
   arr!: string[];
   lengths: number[] = []
   lengths2: number[] = []
+    #mediaQueryService = inject(MediaQueryService)
+           isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+           isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+           isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
   calculateArr(ourArr: number[], circumference: number = 100) {
     let finalArr: number[] = []
     let sum = ourArr.reduce((prev, current) => {
@@ -41,11 +46,7 @@ export class BudgetsComponent implements OnInit {
 
 }
   ngOnInit(): void {
-    this.#mediaService.viewports.subscribe(viewports => {
-      this.viewports.isDesktop = viewports.isDesktop
-      this.viewports.isMobile = viewports.isMobile
-      this.viewports.isTablet = viewports.isTablet
-    })
+   
 
     this.arr2 = this.arrNums.map(el => el.toString())
     this.arrNums = this.calculateArr(this.arrNums);

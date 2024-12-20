@@ -1,4 +1,4 @@
-<div class="container-nav-btn py-150">
+<div [ngClass]="{'container-nav-btn-desktop': isDesktop(), 'container-nav-btn-tablet py-150': isTablet(), 'container-nav-btn-mobile': isMobile()}">
         <ng-content></ng-content>
-        <p class="text-preset-5 mt-50">{{btnTitle}}</p>
+        <p [ngClass]="{'mt-50 text-preset-5': isTablet(), 'ml-200 text-preset-3 w-fit-content': isDesktop(), 'd-none': isMobile()}" style="float: left;  white-space: nowrap;">{{btnTitle}}</p>
 </div> 

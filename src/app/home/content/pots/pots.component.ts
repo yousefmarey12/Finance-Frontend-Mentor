@@ -1,10 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { TertiaryComponent } from '../../../components/buttons/tertiary/tertiary.component';
 import { MiniCardComponent } from '../../../components/mini-card/mini-card.component';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../components/header/header.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pots',
@@ -13,20 +14,9 @@ import { HeaderComponent } from '../../../components/header/header.component';
   templateUrl: './pots.component.html',
   styleUrl: './pots.component.css'
 })
-export class PotsComponent implements OnInit {
- #mediaService = inject(MediaQueryService)
-  viewports: MediaQuery = {
-    isDesktop: false,
-    isMobile: false,
-    isTablet: false
-  }
-  ngOnInit(): void {
-  
-    this.#mediaService.viewports.subscribe(viewports => {
-      this.viewports.isDesktop = viewports.isDesktop
-      this.viewports.isMobile = viewports.isMobile
-      this.viewports.isTablet = viewports.isTablet
-    })
-
-  }
+export class PotsComponent  {
+   #mediaQueryService = inject(MediaQueryService)
+       isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+       isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+       isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
 }

@@ -16,19 +16,4 @@ export class BalanceComponent {
   @Input() subtitle: string = "Balance"
   @Input() amount: string = '3814.25'
 
-  #mediaService = inject(MediaQueryService)
-    viewports: MediaQuery = {
-      isDesktop: false,
-      isMobile: false,
-      isTablet: false
-    }
-    ngOnInit(): void {
-    
-      this.#mediaService.viewports.subscribe(viewports => {
-        this.viewports.isDesktop = viewports.isDesktop
-        this.viewports.isMobile = viewports.isMobile
-        this.viewports.isTablet = viewports.isTablet
-      })
-
-    }
 }

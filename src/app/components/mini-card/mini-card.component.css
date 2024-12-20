@@ -22,3 +22,8 @@
 .card-number-color {
     color: var(--grey-900);
 }
+
+.no-text-wrap {
+    white-space: nowrap;
+    float: left;
+}
