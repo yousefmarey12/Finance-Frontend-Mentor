@@ -1,5 +1,5 @@
 .container {
-    width: 320px;
+    width: 100%;
     height: 32px;
     display: flex;
     flex-direction: row;
@@ -7,9 +7,13 @@
     gap: 12px;
 }
 
+.border {
+    border: 1px solid var(--beige-500, #98908B);
+}
+
 ul {
     list-style-type: none;
-    width: 320px;
+    width: 100%;
 }
 
 li {
@@ -23,22 +27,6 @@ li {
 }
 
 
-.choice-1 {
-    top: 100%;
-}
-
-.choice-2 {
-    top: 200%;
-}
-
-.choice-3 {
-    top: 300%;
-}
-
-.choice {
-    width: 100%;
-    height: 100%;
-}
 
 .line {
     height: 3px;
@@ -62,10 +50,27 @@ hr {
     border: 1px solid #F2F2F2
 }
 
-li::first-letter, p::first-letter {
+li span, p span {
     color: var(--beige-500);
 }
 
 li, p {
     color: var(--beige-500);
+    
+}
+
+.active {
+    border: 1px solid var(--grey-900, #201F24);
+}
+
+.hover {
+    border: 1px solid var(--grey-500, #696868);
+}
+
+.hover li, .hover p {
+    color: var(--grey-900);
+}
+
+.active li, .active p {
+    color: var(--grey-900);
 }

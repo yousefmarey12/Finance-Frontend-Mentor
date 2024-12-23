@@ -1,26 +1,47 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { InputType } from '../input-field/input-field.component';
 import { CommonModule } from '@angular/common';
-
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HoverDirective } from '../../shared-directives/hover.directive';
 @Component({
   selector: 'app-dropdown',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HoverDirective],
   templateUrl: './dropdown.component.html',
-  styleUrl: './dropdown.component.css'
+  styleUrl: './dropdown.component.css',
+  animations: [
+    trigger('clickDropdown', [
+      state('open', style({
+        'opacity': 1
+      })),
+      state('close', style({
+        'opacity': 0
+      })),
+      transition('open <=> close', [animate('400ms')])
+    ])
+  ]
 })
-export class DropdownComponent implements AfterViewInit {
-  @Input() placeholder: string = ''
-  @Input() colorTagCode: string = ''
-  @Input() iconImg: string = 'color_tag.svg'
-  @ViewChild('select') select!: ElementRef
-  getIconValue() {
-    return `url("${this.iconImg}") 95% 50% no-repeat`
+export class DropdownComponent  {
+  dropdownState: string = 'close'
+  @Input() placeholder: string = 'Placeholder'
+  @Input() prefix: string = ''
+  @Input() iconImg: string = ''
+  active: boolean = false
+
+
+
+
+  onClick() {
+    if (this.dropdownState == 'close') {
+      this.dropdownState = 'open'
+    }
+    else {
+      this.dropdownState = 'close'
+    }
+    this.active = true;
   }
 
-  ngAfterViewInit(): void {
-      console.dir(this.select.nativeElement['0'].innerHTML[0])
-  }
+  
   
 
 }

@@ -7,11 +7,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../shared-services/media-query.service';
 import { TransactionTabletComponent } from '../../components/transaction-tablet/transaction-tablet.component';
 import { PaginationBtnComponent } from '../../components/pagination-btn/pagination-btn.component';
+import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-transactions-page',
   standalone: true,
-  imports: [TransactionComponent, CommonModule, InputFieldComponent, TransactionTabletComponent, PaginationBtnComponent  ],
+  imports: [TransactionComponent, CommonModule, InputFieldComponent, TransactionTabletComponent, PaginationBtnComponent, DropdownComponent  ],
   templateUrl: './transactions-page.component.html',
   styleUrl: './transactions-page.component.css'
 })

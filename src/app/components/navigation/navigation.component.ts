@@ -14,7 +14,7 @@ import { SafeHtmlPipe } from '../../shared-pipes/safe-html.pipe';
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-  isActive: boolean[] = [true, false, false, false, false]
+  isActive: boolean[] = [false, true, false, false, false]
   #mediaQueryService = inject(MediaQueryService)
             isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
             isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));

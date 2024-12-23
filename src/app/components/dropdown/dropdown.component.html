@@ -2,18 +2,18 @@
 <div class="position-relative">
 
 
-<ul class="container px-200 py-400 text-preset-4 bg-white br-8">
-    <li class="center-x">
-        <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+<ul appHover class="container border px-250 py-150 text-preset-4 bg-white br-8" (click)="onClick()" [ngClass]="{'active': this.active}">
+    <li *ngIf="iconImg" class="center-x">
+        <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
         <circle cx="8" cy="8.5" r="8" fill="#277C78"/>
         </svg>  
     </li>
-    <li class="w-100">
-        $  Placeholder 
-        <ul class="position-absolute  options px-250 py-150 bg-white br-8">
-            <li class="w-100"><p class="text-preset-4">$ 1</p> <hr></li>
-            <li class="w-100"><p>$ 2</p> <hr></li>
-            <li class="w-100"><p>$ 3</p> <hr></li>
+    <li class="w-100 value">
+        <span class="first-letter">{{prefix}}</span>  {{placeholder}}
+        <ul class="position-absolute fade options px-250 py-150 bg-white br-8" [@clickDropdown]="dropdownState" [ngClass]="{'d-none': dropdownState == 'close'}">
+            <li class="w-100"><p class="text-preset-4"><span  class="first-letter">{{prefix}}</span> 1</p> <hr></li>
+            <li class="w-100"><p><span class="first-letter">{{prefix}}</span> 2</p> <hr></li>
+            <li class="w-100"><p><span class="first-letter">{{prefix}}</span> 3</p> <hr></li>
         </ul>
     </li>
    
