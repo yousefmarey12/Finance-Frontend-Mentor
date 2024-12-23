@@ -4,7 +4,11 @@
         <div class="profile-pic">
 
         </div>
-        <p class="text-preset-4-bold ml-200">{{ person }}</p>
+        <div class="ml-200">
+            <p class="text-preset-4-bold">{{ person }}</p>
+            <p class="text-preset-5" style="color: #696868;">{{category}}</p>
+        </div>
+      
     </div>
     <div class="value text-preset-4-bold text-align-right w-fit-content {{isCredit ? 'green' : 'black'}}">
         <p>{{isCredit ? '+' : '-'}}${{amount | money}}</p>

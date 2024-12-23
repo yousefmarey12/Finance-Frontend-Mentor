@@ -34,6 +34,10 @@
     border-radius: 12px;
 }
 
+.br-8 {
+    border-radius: 8px;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -648,6 +652,10 @@
 
 .text-align-right {
     text-align: right;
+}
+
+.text-align-start {
+    text-align: start;
 }
 
 .text-align-left {

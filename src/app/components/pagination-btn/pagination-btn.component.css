@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--white);
+    border: 1px solid var(--color-beige-500, #98908B);
+}
+
+.black {
+    color: var(--grey-900);
+}

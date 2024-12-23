@@ -1,0 +1,35 @@
+
+<div *ngIf="isHeader" class="container mx-auto">
+    <div class="cell cell-person img-title w-fit-content">
+        <p class="mt-100 text-preset-5 grey-500">Recipient / Sender</p>
+    </div>
+    <div class="cell cell-category text-align-right w-fit-content">
+        <p class="mt-100 text-preset-5 grey-500">Category</p>
+    </div>
+    <div class="cell cell-date text-align-right w-fit-content">
+        <p class="mt-100 text-preset-5 grey-500">Transaction Date</p>
+    </div>
+    <div class="cell cell-amount w-100 text-align-end w-fit-content">
+        <p class="mt-100 text-preset-5 grey-500 w-100">Amount</p>
+    </div>
+</div>
+<div *ngIf="!isHeader" class="container mt-250 mx-auto">
+    <div class="cell cell-person img-title w-fit-content">
+        <div class="profile-pic">
+
+        </div>
+        <div class="ml-200">
+            <p class="text-preset-4-bold">{{ person }}</p>
+        </div>
+      
+    </div>
+    <div class="cell cell-category text-align-right w-fit-content">
+        <p class="mt-100 text-preset-5 grey-500">{{category}}</p>
+    </div>
+    <div class="cell cell-date text-align-right w-fit-content">
+        <p class="mt-100 text-preset-5 grey-500">{{date}}</p>
+    </div>
+    <div class="cell cell-amount w-100 text-align-end w-fit-content">
+        <p class="mt-100 text-preset-4-bold w-100 {{isCredit ? 'green' : 'black'}}">{{isCredit ? '+' : '-'}}${{amount | money}}</p>
+    </div>
+</div>

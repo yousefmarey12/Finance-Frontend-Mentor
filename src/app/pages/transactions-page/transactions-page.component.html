@@ -1,0 +1,84 @@
+<div class="container mx-200">
+   <div class="w-100 mt-300">
+    <h1  class="text-preset-1">Transactions</h1>
+   </div> 
+<div class="inner-container px-250 py-300 bg-white br">
+
+
+    <div class="search-bar">
+        <app-input-field [placeholder]="'Search Transaction'" [iconImg]="'magnify-icon.svg'" [inputType]="{basic: false, withIcon: true, withPrefix: false, withColorTag: false, isBold: false}"></app-input-field>
+        <svg *ngIf="isMobile()" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+            <path d="M16.25 3L3.75 3C3.41848 3 3.10054 3.1317 2.86612 3.36612C2.6317 3.60054 2.5 3.91848 2.5 4.25L2.5 16.75C2.5 17.0815 2.6317 17.3995 2.86612 17.6339C3.10054 17.8683 3.41848 18 3.75 18H16.25C16.5815 18 16.8995 17.8683 17.1339 17.6339C17.3683 17.3995 17.5 17.0815 17.5 16.75V4.25C17.5 3.91848 17.3683 3.60054 17.1339 3.36612C16.8995 3.1317 16.5815 3 16.25 3ZM5.625 6.125L13.125 6.125C13.2908 6.125 13.4497 6.19085 13.5669 6.30806C13.6842 6.42527 13.75 6.58424 13.75 6.75C13.75 6.91576 13.6842 7.07473 13.5669 7.19194C13.4497 7.30915 13.2908 7.375 13.125 7.375L5.625 7.375C5.45924 7.375 5.30027 7.30915 5.18306 7.19194C5.06585 7.07473 5 6.91576 5 6.75C5 6.58424 5.06585 6.42527 5.18306 6.30806C5.30027 6.19085 5.45924 6.125 5.625 6.125ZM8.75 14.875L5.625 14.875C5.45924 14.875 5.30027 14.8092 5.18306 14.6919C5.06585 14.5747 5 14.4158 5 14.25C5 14.0842 5.06585 13.9253 5.18306 13.8081C5.30027 13.6908 5.45924 13.625 5.625 13.625L8.75 13.625C8.91576 13.625 9.07473 13.6908 9.19194 13.8081C9.30915 13.9253 9.375 14.0842 9.375 14.25C9.375 14.4158 9.30915 14.5747 9.19194 14.6919C9.07473 14.8092 8.91576 14.875 8.75 14.875ZM9.375 11.125L5.625 11.125C5.45924 11.125 5.30027 11.0592 5.18306 10.9419C5.06585 10.8247 5 10.6658 5 10.5C5 10.3342 5.06585 10.1753 5.18306 10.0581C5.30027 9.94085 5.45924 9.875 5.625 9.875H9.375C9.54076 9.875 9.69973 9.94085 9.81694 10.0581C9.93415 10.1753 10 10.3342 10 10.5C10 10.6658 9.93415 10.8247 9.81694 10.9419C9.69973 11.0592 9.54076 11.125 9.375 11.125ZM15.4422 13.4422L13.5672 15.3172C13.5091 15.3753 13.4402 15.4214 13.3643 15.4529C13.2885 15.4843 13.2071 15.5005 13.125 15.5005C13.0429 15.5005 12.9615 15.4843 12.8857 15.4529C12.8098 15.4214 12.7409 15.3753 12.6828 15.3172L10.8078 13.4422C10.6905 13.3249 10.6247 13.1659 10.6247 13C10.6247 12.8341 10.6905 12.6751 10.8078 12.5578C10.9251 12.4405 11.0841 12.3747 11.25 12.3747C11.4159 12.3747 11.5749 12.4405 11.6922 12.5578L12.5 13.3664V9.875C12.5 9.70924 12.5658 9.55027 12.6831 9.43306C12.8003 9.31585 12.9592 9.25 13.125 9.25C13.2908 9.25 13.4497 9.31585 13.5669 9.43306C13.6842 9.55027 13.75 9.70924 13.75 9.875V13.3664L14.5578 12.5578C14.6751 12.4405 14.8341 12.3747 15 12.3747C15.1659 12.3747 15.3249 12.4405 15.4422 12.5578C15.5595 12.6751 15.6253 12.8341 15.6253 13C15.6253 13.1659 15.5595 13.3249 15.4422 13.4422Z" fill="#201F24"/>
+          </svg>
+          <svg *ngIf="isMobile()" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+            <path d="M17.7976 5.71563L17.7914 5.72266L12.5 11.3727V15.7078C12.5003 15.914 12.4496 16.117 12.3524 16.2989C12.2552 16.4807 12.1145 16.6357 11.9429 16.75L9.44295 18.4172C9.25455 18.5427 9.03561 18.6147 8.8095 18.6254C8.5834 18.6362 8.3586 18.5854 8.15912 18.4784C7.95964 18.3714 7.79296 18.2122 7.67687 18.0179C7.56078 17.8236 7.49964 17.6014 7.49998 17.375L7.49998 11.3727L2.20857 5.72266L2.20232 5.71563C2.03963 5.53657 1.93238 5.31416 1.8936 5.07536C1.85483 4.83656 1.88618 4.59163 1.98386 4.3703C2.08154 4.14897 2.24135 3.96074 2.4439 3.82844C2.64646 3.69615 2.88305 3.62548 3.12498 3.625L16.875 3.625C17.1171 3.62502 17.354 3.69537 17.5569 3.82749C17.7598 3.9596 17.92 4.14781 18.018 4.36923C18.1159 4.59065 18.1475 4.83576 18.1088 5.07478C18.0701 5.31379 17.9628 5.53643 17.8 5.71563H17.7976Z" fill="#201F24"/>
+          </svg>
+          <div class="filter-sort">
+        
+          <div class="input-field-container">
+            <p class="text-preset-4">Sort by</p>
+            <app-input-field [placeholder]="'Latest'" [iconImg]="'dropdown-icon.svg'" [inputType]="{basic: false, withIcon: true, withPrefix: false, withColorTag: false, isBold: true}"></app-input-field>
+          </div>
+          <div class="input-field-container">
+            <p class="text-preset-4">Category</p>
+            <app-input-field [placeholder]="'All Transactions'" [iconImg]="'dropdown-icon.svg'" [inputType]="{basic: false, withIcon: true, withPrefix: false, withColorTag: false, isBold: true}"></app-input-field>
+          </div>
+              
+        </div>
+    </div>
+<div *ngIf="isMobile()"class="transactions-mobile">
+    <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person"></app-transaction>
+</div>
+<div *ngIf="!isMobile()" class="w-100">
+  <app-transaction-tablet [isHeader]="true"></app-transaction-tablet>
+  <hr>
+  <app-transaction-tablet *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" [isHeader]="false"></app-transaction-tablet>
+</div>
+<div class="inner-nav-mobile" *ngIf="isMobile()">
+    <div class="transaction-nav p-200">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10.1465 12.8536L5.14649 7.85356C5.10001 7.80713 5.06313 7.75198 5.03796 7.69128C5.0128 7.63059 4.99985 7.56552 4.99985 7.49981C4.99985 7.43411 5.0128 7.36904 5.03796 7.30834C5.06313 7.24765 5.10001 7.1925 5.14649 7.14606L10.1465 2.14606C10.2164 2.07606 10.3055 2.02837 10.4026 2.00905C10.4996 1.98972 10.6002 1.99963 10.6916 2.0375C10.7831 2.07538 10.8612 2.13953 10.9161 2.22182C10.971 2.30412 11.0003 2.40087 11.0002 2.49981L11.0002 12.4998C11.0003 12.5988 10.971 12.6955 10.9161 12.7778C10.8612 12.8601 10.7831 12.9242 10.6916 12.9621C10.6002 13 10.4996 13.0099 10.4026 12.9906C10.3055 12.9713 10.2164 12.9236 10.1465 12.8536Z" fill="#696868"/>
+      </svg>
+    </div>
+    <div class="transaction-nav bg-white p-200">
+      <p class="text-preset-4">1</p>
+    </div>
+    <div class="transaction-nav active p-200">
+      <p class="text-preset-4">2</p>
+    </div>
+    <div class="transaction-nav bg-white p-200">
+      <p class="text-preset-4">...</p>
+    </div>
+    <div class="transaction-nav bg-white p-200">
+      <p class="text-preset-4">5</p>
+    </div>
+    <div class="transaction-nav p-200">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M5.85351 3.14643L10.8535 8.14644C10.9 8.19287 10.9369 8.24802 10.962 8.30872C10.9872 8.36941 11.0001 8.43448 11.0001 8.50019C11.0001 8.56589 10.9872 8.63096 10.962 8.69166C10.9369 8.75235 10.9 8.8075 10.8535 8.85394L5.85351 13.8539C5.78358 13.9239 5.69445 13.9716 5.59741 13.991C5.50037 14.0103 5.39977 14.0004 5.30836 13.9625C5.21695 13.9246 5.13883 13.8605 5.0839 13.7782C5.02896 13.6959 4.99968 13.5991 4.99976 13.5002L4.99976 3.50019C4.99968 3.40124 5.02896 3.30449 5.0839 3.22219C5.13883 3.1399 5.21695 3.07575 5.30836 3.03787C5.39977 3 5.50037 2.9901 5.59741 3.00942C5.69445 3.02875 5.78358 3.07643 5.85351 3.14643Z" fill="#696868"/>
+      </svg>
+    </div>
+</div>
+<div *ngIf="!isMobile()" class="inner-nav-tablet">
+  <app-pagination-btn [isNext]="false"></app-pagination-btn>
+    <div class="pagination-numbers">
+      <div class="transaction-nav bg-white p-200">
+        <p class="text-preset-4">1</p>
+      </div>
+      <div class="transaction-nav active p-200">
+        <p class="text-preset-4">2</p>
+      </div>
+      <div class="transaction-nav bg-white p-200">
+        <p class="text-preset-4">3</p>
+      </div>
+      <div class="transaction-nav bg-white p-200">
+        <p class="text-preset-4">4</p>
+      </div>
+      <div class="transaction-nav bg-white p-200">
+        <p class="text-preset-4">5</p>
+      </div>
+    </div>
+  <app-pagination-btn [isNext]="true"></app-pagination-btn>
+
+</div>
+</div>
+</div>

@@ -24,3 +24,24 @@
 .w-fit-content {
     width: fit-content;
 }
+
+.hover path {
+    fill: #F2F2F2;
+}   
+
+.hover p {
+    color: #F2F2F2;
+}
+
+.active p {
+    color: var(--grey-900);
+}
+
+.active path {
+    fill: #277C78;
+}
+
+
+.hover {
+    transition: 0.5s;
+}

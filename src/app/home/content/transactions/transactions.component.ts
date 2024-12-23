@@ -10,7 +10,8 @@ export interface Transaction {
   isCredit: boolean,
   person: string,
   amount: string,
-  date: string
+  date: string,
+  category?: string
 }
 @Component({
   selector: 'app-transactions',

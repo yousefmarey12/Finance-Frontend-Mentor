@@ -1,0 +1,47 @@
+.img-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    background: url("/emma-richardson.jpg") lightgray 50% / cover no-repeat;
+}
+
+.container {
+    display: flex;
+
+}
+
+.cell-person {
+    flex: 4;
+}
+
+.cell-category, .cell-date {
+    flex: 1;
+}
+
+.cell-amount {
+    flex: 2;
+}
+
+.cell {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.grey-500 {
+    color: var(--grey-500);
+}
+
+.green {
+    color: var(--secondary-green);
+}
+
+.black {
+    color: var(--grey-900);
+}
