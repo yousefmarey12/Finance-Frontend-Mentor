@@ -1,13 +1,13 @@
 import { Component, computed, inject } from '@angular/core';
-import { Transaction } from '../../home/content/transactions/transactions.component';
-import { TransactionComponent } from '../../home/content/transaction/transaction.component';
+import { Transaction } from '../../components/medium/transactions/transactions.component';
+import { TransactionComponent } from '../../components/small/transaction/transaction.component';
 import { CommonModule } from '@angular/common';
-import { InputFieldComponent } from '../../components/input-field/input-field.component';
+import { InputFieldComponent } from '../../components/medium/input-field/input-field.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../shared-services/media-query.service';
-import { TransactionTabletComponent } from '../../components/transaction-tablet/transaction-tablet.component';
-import { PaginationBtnComponent } from '../../components/pagination-btn/pagination-btn.component';
-import { DropdownComponent } from '../../components/dropdown/dropdown.component';
+import { TransactionTabletComponent } from '../../components/medium/transaction-tablet/transaction-tablet.component';
+import { PaginationBtnComponent } from '../../components/small/pagination-btn/pagination-btn.component';
+import { DropdownComponent } from '../../components/medium/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-transactions-page',

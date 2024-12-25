@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, computed, effect, inject, NgZone, OnInit } from '@angular/core';
-import { BalanceOverviewComponent } from '../../home/overview/balance-overview/balance-overview.component';
-import { PotsComponent } from '../../home/content/pots/pots.component';
-import { TransactionsComponent } from '../../home/content/transactions/transactions.component';
-import { BudgetsComponent } from '../../home/content/budgets/budgets.component';
-import { BillsComponent } from '../../home/content/bills/bills.component';
+import { BalanceOverviewComponent } from '../../components/large/balance-overview/balance-overview.component';
+import { PotsComponent } from '../../components/large/pots/pots.component';
+import { TransactionsComponent } from '../../components/medium/transactions/transactions.component';
+import { BudgetsComponent } from '../../components/large/budgets/budgets.component';
+import { BillsComponent } from '../../components/large/bills/bills.component';
 import { MediaQueryService } from '../../shared-services/media-query.service';
 import { MediaQuery } from '../../shared-interfaces/media-query.interface';
 import { CommonModule } from '@angular/common';

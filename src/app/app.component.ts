@@ -2,14 +2,14 @@ import { AfterViewInit, Component, computed, inject, OnInit, Signal, WritableSig
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { MediaQueryService } from './shared-services/media-query.service';
-import { NavigationComponent } from './components/navigation/navigation.component';
+import { NavigationComponent } from './components/medium/navigation/navigation.component';
 import { MediaQuery } from './shared-interfaces/media-query.interface';
 import { toSignal } from "@angular/core/rxjs-interop"
 import { CommonModule } from '@angular/common';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
-import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { SpendingSummaryComponent } from './budgets/spending-summary/spending-summary.component';
-import { BudgetDetailComponent } from './budgets/budget-detail/budget-detail.component';
+import { DropdownComponent } from './components/medium/dropdown/dropdown.component';
+import { SpendingSummaryComponent } from './components/large/spending-summary/spending-summary.component';
+import { BudgetDetailComponent } from './components/large/budget-detail/budget-detail.component';
 
 @Component({
   selector: 'app-root',
