@@ -8,11 +8,13 @@ import { toSignal } from "@angular/core/rxjs-interop"
 import { CommonModule } from '@angular/common';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { SpendingSummaryComponent } from './budgets/spending-summary/spending-summary.component';
+import { BudgetDetailComponent } from './budgets/budget-detail/budget-detail.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent],
+  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -10,4 +10,5 @@ import { TertiaryComponent } from '../buttons/tertiary/tertiary.component';
 })
 export class HeaderComponent {
   @Input() title: string = ''
+  @Input() isTransparent: boolean = false;
 }

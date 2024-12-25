@@ -17,11 +17,11 @@
         
           <div class="input-field-container">
             <p class="text-preset-4">Sort by</p>
-            <app-dropdown [placeholder]="'Latest'"></app-dropdown>
+            <app-dropdown [placeholder]="'Latest'" [dropdownValues]="['Latest', 'Oldest', 'A to Z', 'Z to A', 'Highest', 'Lowest']"></app-dropdown>
           </div>
           <div class="input-field-container">
             <p class="text-preset-4">Category</p>
-            <app-dropdown [placeholder]="'All Transactions'"></app-dropdown>
+            <app-dropdown [placeholder]="'All Transactions'" [dropdownValues]="['Entertainment', 'Bills', 'Groceries', 'Dining Out', 'Transportation ', 'Personal Care', 'Education', 'Lifestyle', 'Shopping', 'General']"></app-dropdown>
           </div>
               
         </div>
@@ -61,20 +61,8 @@
 <div *ngIf="!isMobile()" class="inner-nav-tablet">
   <app-pagination-btn [isNext]="false"></app-pagination-btn>
     <div class="pagination-numbers">
-      <div class="transaction-nav bg-white p-200">
-        <p class="text-preset-4">1</p>
-      </div>
-      <div class="transaction-nav active p-200">
-        <p class="text-preset-4">2</p>
-      </div>
-      <div class="transaction-nav bg-white p-200">
-        <p class="text-preset-4">3</p>
-      </div>
-      <div class="transaction-nav bg-white p-200">
-        <p class="text-preset-4">4</p>
-      </div>
-      <div class="transaction-nav bg-white p-200">
-        <p class="text-preset-4">5</p>
+      <div class="transaction-nav p-200" [ngClass]="{'active': (activeNumbers.includes(num))}" *ngFor="let num of [1, 2, 3, 4, 5]" (click)="onClickPage(num)">
+        <p class="text-preset-4">{{num}}</p>
       </div>
     </div>
   <app-pagination-btn [isNext]="true"></app-pagination-btn>

@@ -8,7 +8,7 @@
     border-radius: 8px;
     border: none;
     padding: 0;
-    background-color: var(--white);
+    
 }
 
 .btn:hover {
@@ -20,5 +20,9 @@
 
 .btn-color {
     color: var(--grey-500);
+    background-color: var(--white);
 }
 
+.transparent {
+    background-color: transparent;
+}

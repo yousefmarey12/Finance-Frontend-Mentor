@@ -3,7 +3,7 @@
 
 <app-header class="w-100" [title]="'Budgets'">See Details</app-header>
 <div class="container " [ngClass]="{'container-tablet position-relative mt-250': (isTablet() || isDesktop()), 'h-100': isDesktop()}">
-    <app-doughnut-chart [ngClass]="{'center': isTablet() || isDesktop()}" class="text-align-center w-100 " [color1]="'#277C78'" [color2]="'#626070'"[color3]="'#82C9D7'" [color4]="'#F2CDAC'" [amountSpent]="'331'" [budget]="'975'" [arr]="arr" [lengths]="lengths" [arr2]="arr2" [lengths2]="lengths2"></app-doughnut-chart>
+    <app-doughnut-chart [ngClass]="{'center': isTablet() || isDesktop()}" class="text-align-center w-100 " [color1]="'#277C78'" [color2]="'#626070'"[color3]="'#82C9D7'" [color4]="'#F2CDAC'" [amountSpent]="'331'" [budget]="'975'" [arr]="arr" [lengths]="lengths"></app-doughnut-chart>
     <div [ngClass]="{'cards': isMobile(), 'text-align-left': isTablet() || isDesktop()}">
         <div [ngClass]="{'top-left mt-250': isMobile(), 'mt-200': isDesktop() || isTablet()}">
             <app-mini-card [color]="'#277C78'" [title]="'Entertainment'" [amount]="'50.00'"></app-mini-card>

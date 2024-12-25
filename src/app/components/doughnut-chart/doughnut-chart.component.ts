@@ -23,13 +23,8 @@ export class DoughnutChartComponent implements OnInit {
     "20 80",
     "10 90"
   ]
-  @Input() arr2: string[] = [
-
-  ]
-  @Input() lengths2: number[] =[]
-  opacitiesOffsets: string[] = [
-
-  ]
+ 
+ 
 
   offsets: string[] = [
 
@@ -38,25 +33,16 @@ export class DoughnutChartComponent implements OnInit {
   ngOnInit(): void {
     let totalLength: number = 0;
     this.offsets.push("25")
+    console.log(this.lengths)
     this.lengths.map((el, i) => {
         totalLength += el;
         this.offsets.push(((100 - totalLength + 25)).toString())
     })
-    let totalLength2: number = 0;
-    this.opacitiesOffsets.push("21.8")
-    this.lengths2.map((el, i) => {
-        totalLength2 += el;
-        this.opacitiesOffsets.push((((100 - (2 *Math.PI * 2)) - totalLength2 + 21.8)).toFixed(4).toString())
-    })
 
-    console.log("lengths2 is")
-    console.log(this.lengths2)
-    console.log("opacitiesOffsets is")
-    console.log(this.opacitiesOffsets)
-    console.log("offsets is")
     console.log(this.offsets)
-    console.log("arr2 is")
-    console.log(this.arr2)
+   
+
+
   }
 
   

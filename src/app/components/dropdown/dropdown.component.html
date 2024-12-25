@@ -1,5 +1,5 @@
 
-<div class="position-relative">
+<div class="position-relative" style="cursor: pointer;">
 
 
 <ul appHover class="container border px-250 py-150 text-preset-4 bg-white br-8" (click)="onClick()" [ngClass]="{'active': this.active}">
@@ -9,11 +9,9 @@
         </svg>  
     </li>
     <li class="w-100 value">
-        <span class="first-letter">{{prefix}}</span>  {{placeholder}}
+        <span class="first-letter">{{prefix}}</span>  {{placeholder}}{{value}}
         <ul class="position-absolute fade options px-250 py-150 bg-white br-8" [@clickDropdown]="dropdownState" [ngClass]="{'d-none': dropdownState == 'close'}">
-            <li class="w-100"><p class="text-preset-4"><span  class="first-letter">{{prefix}}</span> 1</p> <hr></li>
-            <li class="w-100"><p><span class="first-letter">{{prefix}}</span> 2</p> <hr></li>
-            <li class="w-100"><p><span class="first-letter">{{prefix}}</span> 3</p> <hr></li>
+            <li #list *ngFor="let value of dropdownValues; index as i" class="w-100" (click)="onClickItem(value)"><p class="text-preset-4"><span  class="first-letter">{{prefix}}</span> {{value}}</p> <hr class="my-150"></li>
         </ul>
     </li>
    

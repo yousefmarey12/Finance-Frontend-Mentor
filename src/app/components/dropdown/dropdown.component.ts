@@ -26,10 +26,19 @@ export class DropdownComponent  {
   @Input() placeholder: string = 'Placeholder'
   @Input() prefix: string = ''
   @Input() iconImg: string = ''
+  @Input() dropdownValues: string[] = []
+  
   active: boolean = false
+  
+  value: string = ''
 
 
+  onClickItem(value: string) {
+    this.value = value
+    this.placeholder = ''
+  }
 
+  
 
   onClick() {
     if (this.dropdownState == 'close') {

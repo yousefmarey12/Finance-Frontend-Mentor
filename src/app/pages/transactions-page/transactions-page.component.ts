@@ -34,4 +34,12 @@ export class TransactionsPageComponent {
            isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
            isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
            isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
+            activeNumbers: number[] = [2]
+
+           onClickPage(num: number) {
+            if (!(num in this.activeNumbers)) {
+              this.activeNumbers.push(num)
+            }
+      
+           }
 }

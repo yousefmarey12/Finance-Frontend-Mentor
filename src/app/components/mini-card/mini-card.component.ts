@@ -13,4 +13,5 @@ export class MiniCardComponent {
   @Input() color: string = ''
   @Input() title: string = ''
   @Input() amount: string = ''
+  @Input() budget: string = ''
 } 

@@ -8,6 +8,12 @@
     display: flex;
     justify-content: flex-start;
 }
+
+.inner-card-flex-between {
+    display: flex;
+    justify-content: space-between;
+    min-width: 250px;
+}
 .inner-card {
     display: flex;
     flex-direction: column;
@@ -21,6 +27,10 @@
 
 .card-number-color {
     color: var(--grey-900);
+}
+
+.card-budget-color {
+    color: var(--grey-500);
 }
 
 .no-text-wrap {

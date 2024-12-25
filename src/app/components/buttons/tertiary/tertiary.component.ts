@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tertiary',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './tertiary.component.css'
 })
 export class TertiaryComponent {
-
+  @Input() transparent: boolean = false
 }

@@ -48,17 +48,13 @@ export class BudgetsComponent implements OnInit {
   ngOnInit(): void {
    
 
-    this.arr2 = this.arrNums.map(el => el.toString())
     this.arrNums = this.calculateArr(this.arrNums);
     this.lengths = this.arrNums
     this.arr = this.arrNums.map((el) => {
         return (el.toString() + " " + (100 - el)).toString()
     })
-    this.lengths2 = this.calculateArr(this.arr2.map(el => (+el)), (100 - (2 * Math.PI * 2)))
     
-    this.arr2 = this.lengths2.map((el) => {
-      return (el.toString() + " " + Math.round(((100 - 2 * Math.PI * 2) - el))).toString()
-    })
+   
    
 
   }

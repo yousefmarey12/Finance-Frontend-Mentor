@@ -56,10 +56,16 @@ input {
     border-radius: 8px;
     border: 1px solid var(--beige-500, #98908B);
     height: 40px;
+    background-color: var(--white);
+    transition: 500ms;
+    cursor: pointer;
 }
-p {
-    color: var(--grey-900);
+
+.transaction-nav:hover {
+    background-color: var(--beige-500);
+    color: var(--white);
 }
+
 .active p {
     color: var(--white);
 }

@@ -5,9 +5,18 @@
     align-items: center;
     gap: 16px;
     background-color: var(--white);
-    border: 1px solid var(--color-beige-500, #98908B);
+    border: 1px solid var(--beige-500, #98908B);
+    color: var(--grey-900);
+    transition: 500ms;
 }
 
-.black {
-    color: var(--grey-900);
+
+
+.container:hover {
+    background-color: var(--beige-500);
+    color: var(--white);
+}
+
+.container:hover path {
+    fill: var(--white);
 }
