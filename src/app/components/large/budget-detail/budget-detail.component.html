@@ -2,7 +2,7 @@
     <div class="header w-100">
         <div class="inner-header">
             <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
-                <circle cx="8" cy="8.5" r="8" fill="#277C78"/>
+                <circle cx="8" cy="8.5" r="8" [attr.fill]="colorTheme"/>
                 </svg>  
             <p class="ml-200 text-preset-2">{{title}}</p>
         </div>
@@ -13,7 +13,7 @@
     <div class="description w-100">
         <p class="text-preset-4">Maximum of ${{maximum | money}}</p>
         <div class="w-100 progress-container p-50 h-100 position-relative">
-            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%'}">
+            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': colorTheme}">
                 <!-- Calculate width -->
             </div>
         </div>
@@ -22,15 +22,17 @@
             <app-mini-card [color]="'#F8F4F0'" [title]="'Free'" [amount]="freeAmount | money"></app-mini-card>
         </div>
     </div>
-    <div class="spending br p-200">
-        <div class="inner-header">
+    <div class="spending br p-200 w-100 text-align-center">
+        <div class="inner-header w-100">
             <p class="text-preset-3">Latest Spending</p>
             <app-tertiary [transparent]="true">See All</app-tertiary>
         </div>
-        <div>
-            <app-transaction [amount]="'10.00'" [hasPhoto]="false" [date]="'16 Aug 2024'" [person]="'Papa Software'"></app-transaction>
-            <app-transaction [amount]="'5.00'" [hasPhoto]="false" [date]="'12 Aug 2024'" [person]="'Quebec Services'"></app-transaction>
-            <app-transaction [amount]="'10.00'" [hasPhoto]="false" [date]="'5 Aug 2024'" [person]="'Romeo Cloud Services'"></app-transaction>
+        <div class="no-text-wrap w-100">
+            <div *ngFor="let transaction of transactions">
+            <app-transaction [amount]="transaction.amount" [hasPhoto]="isMobile() ? false : true" [date]="transaction.date" [person]="transaction.person" [isCredit]="false"></app-transaction>
+            <hr>
+            </div>
+           
         </div>
     </div>
 </div>

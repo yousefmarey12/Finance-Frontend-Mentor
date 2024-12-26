@@ -29,7 +29,13 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.no-text-wrap {
+    white-space: nowrap;
+    float: left;
+}
+.max-w-100 {
+    max-width: 100%;
+}
 
 .br {
     border-radius: 12px;
@@ -52,6 +58,7 @@
     line-height: 120%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
+    font-weight: 700;
 }
 
 .text-preset-2 {
@@ -59,6 +66,7 @@
     line-height: 120%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
+    font-weight: 700;
 }
 
 .text-preset-3 {
@@ -66,6 +74,7 @@
     line-height: 150%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
+    font-weight: 700;
 }
 
 .text-preset-4 {
@@ -73,6 +82,7 @@
     line-height: 150%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
+    font-weight: 400;
 }
 
 .text-preset-4-bold {
@@ -80,7 +90,7 @@
     line-height: 150%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .text-preset-5 {
@@ -88,6 +98,7 @@
     line-height: 150%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
+    font-weight: 400;
 }
 
 .text-preset-5-bold {
@@ -95,7 +106,7 @@
     line-height: 150%;
     letter-spacing: 0;
     font-family: "Public Sans", sans-serif;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .position-relative {

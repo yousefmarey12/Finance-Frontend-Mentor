@@ -14,7 +14,6 @@
 }
 
 .progress {
-    background: #277C78;
     left: 4px;
     top: 50%;
     transform: translate(0, -50%);
@@ -26,6 +25,7 @@
     height: 32px;
     background: #F8F4F0;
     border-radius: 4px;
+    position: relative;
 }
 
 .header {
@@ -44,6 +44,11 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+}
+
+.description p {
+    color: var(--grey-500);
 }
 
 .space-between {
@@ -57,3 +62,8 @@
     align-items: baseline;
     height: fit-content;
 }
+
+.inner-header .text-preset-2 {
+    color: var(--grey-900);
+}
+

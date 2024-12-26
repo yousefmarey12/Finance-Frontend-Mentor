@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { SpendingSummaryComponent } from '../spending-summary/spending-summary.component';
 import { MiniCardComponent } from '../../small/mini-card/mini-card.component';
 import { HeaderComponent } from '../../medium/header/header.component';
@@ -6,6 +6,9 @@ import { TransactionComponent } from '../../small/transaction/transaction.compon
 import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
 import { DisplayMoney } from '../../../shared-pipes/display-number.pipe';
 import { CommonModule } from '@angular/common';
+import { Transaction } from '../../medium/transactions/transactions.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MediaQueryService } from '../../../shared-services/media-query.service';
 
 @Component({
   selector: 'app-budget-detail',
@@ -14,14 +17,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './budget-detail.component.html',
   styleUrl: './budget-detail.component.css'
 })
-export class BudgetDetailComponent {
+export class BudgetDetailComponent implements OnInit {
   @Input() colorTheme: string = ''
   @Input() freeAmount: string = ''
   @Input() spentAmount: string = ''
   @Input() title: string = ''
-  maximum = ((+this.freeAmount) + this.spentAmount).toString()
-
-  amountPercentage: string = ((+this.freeAmount)/(+this.maximum)).toString()
-
-  
+  @Input() transactions: Transaction[] = []
+  maximum: string = ''
+  amountPercentage: string = '' 
+#mediaQueryService = inject(MediaQueryService)
+       isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+       isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+       isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
+  ngOnInit(): void {
+  this.maximum = ((+this.spentAmount) + (+this.freeAmount)).toString()
+  this.amountPercentage = (((+this.freeAmount)/(+this.maximum)) * 100).toString()
+  }
 }
