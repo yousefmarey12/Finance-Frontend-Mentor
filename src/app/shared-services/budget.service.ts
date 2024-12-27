@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { MediaQuery } from '../shared-interfaces/media-query.interface';
 import { Transaction } from '../components/medium/transactions/transactions.component';
 import { BudgetDetail } from '../shared-interfaces/budget-detail.interface';
@@ -7,7 +7,7 @@ import { BudgetDetail } from '../shared-interfaces/budget-detail.interface';
   providedIn: 'root',
 })
 export class BudgetService {
-    private budgetDetails: BudgetDetail[] = [
+    private budgetDetails = signal<BudgetDetail[]>([
         {
             category: 'Entertainment', 
             spentAmount: '25.00', freeAmount: '50.00', colorTheme: '#277C78',
@@ -44,10 +44,28 @@ export class BudgetService {
                 {isCredit: false, person: 'Bravo Zen Spa', amount: '25.00', date: '13 Aug 2024'},
             ]
         }
-    ] 
+    ] ) 
 
-    getBudgetDetails(): BudgetDetail[] {
+    getBudgetDetails(): Signal<BudgetDetail[]> {
         return this.budgetDetails
+    }
+
+    getBudget(index: number) {
+        if (index >= this.budgetDetails().length) {
+            throw Error("Out of bounds.")
+        }
+        else {
+            return this.budgetDetails()[index];
+        }
+    }
+
+    removeBudget(index: number): void {
+        this.budgetDetails.set(this.budgetDetails().filter((el, currentIndex) => {
+            if (index != currentIndex) {
+                return true
+            }
+            return false;
+        }))
     }
 
 }

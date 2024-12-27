@@ -17,11 +17,11 @@
         
           <div class="input-field-container">
             <p class="text-preset-4">Sort by</p>
-            <app-dropdown [placeholder]="'Latest'" [dropdownValues]="['Latest', 'Oldest', 'A to Z', 'Z to A', 'Highest', 'Lowest']"></app-dropdown>
+            <app-dropdown [placeholder]="dropdownValuesSort[0]" [dropdownValues]="dropdownValuesSort"></app-dropdown>
           </div>
           <div class="input-field-container">
             <p class="text-preset-4">Category</p>
-            <app-dropdown [placeholder]="'All Transactions'" [dropdownValues]="['Entertainment', 'Bills', 'Groceries', 'Dining Out', 'Transportation ', 'Personal Care', 'Education', 'Lifestyle', 'Shopping', 'General']"></app-dropdown>
+            <app-dropdown [placeholder]="dropdownValuesCategory[0]" [dropdownValues]="dropdownValuesCategory"></app-dropdown>
           </div>
               
         </div>

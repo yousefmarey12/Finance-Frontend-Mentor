@@ -7,6 +7,7 @@
 .btn {
     border-radius: 8px;
     background-color: var(--secondary-red);
+    border: none;
 }
 
 .btn:hover {

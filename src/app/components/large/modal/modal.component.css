@@ -12,9 +12,27 @@
     max-width: 560px;   
 }
 
+.max-width-mobile {
+    max-width: 335px;
+}
+
+.max-width {
+    max-width: 560px;
+}
+
 .header h1 {
     color: var(--grey-900);
 }
+
+.header svg {
+    cursor: pointer;
+}
+
+
+.btn {
+    cursor: pointer;
+}
+
 
 .header {
     display: flex;

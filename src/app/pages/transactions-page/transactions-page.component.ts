@@ -8,6 +8,7 @@ import { MediaQueryService } from '../../shared-services/media-query.service';
 import { TransactionTabletComponent } from '../../components/medium/transaction-tablet/transaction-tablet.component';
 import { PaginationBtnComponent } from '../../components/small/pagination-btn/pagination-btn.component';
 import { DropdownComponent } from '../../components/medium/dropdown/dropdown.component';
+import { Dropdown } from '../../shared-interfaces/dropdown.interface';
 
 @Component({
   selector: 'app-transactions-page',
@@ -17,6 +18,27 @@ import { DropdownComponent } from '../../components/medium/dropdown/dropdown.com
   styleUrl: './transactions-page.component.css'
 })
 export class TransactionsPageComponent {
+  dropdownValuesSort: Dropdown[] = [
+    {title: 'Latest', code: '', alreadyUsed: false},
+    {title: 'Oldest', code: '', alreadyUsed: false},
+    {title: 'A to Z', code: '', alreadyUsed: false},
+    {title: 'Z to A', code: '', alreadyUsed: false},
+    {title: 'Highest', code: '', alreadyUsed: false},
+    {title: 'Lowest', code: '', alreadyUsed: false},
+  ]
+
+  dropdownValuesCategory: Dropdown[] = [
+    {title: 'Entertainment', code: '', alreadyUsed: false},
+    {title: 'Bills', code: '', alreadyUsed: false},
+    {title: 'Groceries', code: '', alreadyUsed: false},
+    {title: 'Dining Out', code: '', alreadyUsed: false},
+    {title: 'Transportation', code: '', alreadyUsed: false},
+    {title: 'Personal Care', code: '', alreadyUsed: false},
+    {title: 'Education', code: '', alreadyUsed: false},
+    {title: 'Lifestyle', code: '', alreadyUsed: false},
+    {title: 'Shopping', code: '', alreadyUsed: false},
+    {title: 'General', code: '', alreadyUsed: false},
+  ]
   currentPage: number = 2;
   transactions: Transaction[] = [
     {isCredit: false, person: "Bravo Zen Spa", amount: "25.00", date: "29 Aug 2024", category: 'Personal Care'},

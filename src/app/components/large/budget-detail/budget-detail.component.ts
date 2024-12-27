@@ -24,6 +24,7 @@ export class BudgetDetailComponent implements OnInit {
   @Input() spentAmount: string = ''
   @Input() title: string = ''
   @Input() transactions: Transaction[] = []
+  @Input() index!: string
   maximum: string = ''
   amountPercentage: string = '' 
 #mediaQueryService = inject(MediaQueryService)

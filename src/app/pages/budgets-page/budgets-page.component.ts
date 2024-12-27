@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { PrimaryComponent } from '../../components/small/buttons/primary/primary.component';
 import { SpendingSummaryComponent } from '../../components/large/spending-summary/spending-summary.component';
 import { BudgetDetailComponent } from '../../components/large/budget-detail/budget-detail.component';
@@ -22,11 +22,12 @@ export class BudgetsPageComponent implements OnInit {
           isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
           isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
           isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
-  constructor(private budgetDetailService: BudgetService) {}
-  ngOnInit(): void {
-      let temp = this.budgetDetailService.getBudgetDetails();
-      for (let i = 0; i < temp.length; i++) {
-        this.budgetDetails.push(temp[i]);
-      }
+      
+  constructor(private budgetDetailService: BudgetService) {
+    effect(() => {
+      this.budgetDetails = this.budgetDetailService.getBudgetDetails()()
+    })
   }
+  ngOnInit(): void {
+     }
 }

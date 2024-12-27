@@ -3,16 +3,17 @@
         <p class="text-preset-1">Budgets</p>
         <app-primary>+ Add New Budget</app-primary>
     </div>
- <div class="w-100" [ngClass]="{'inner-container': isDesktop()}">
+ <div class="w-100" [ngClass]="{'inner-container': isDesktop(), 'container': !isDesktop()}">
     <app-spending-summary class="w-100" ></app-spending-summary> 
     <div class="container w-100">
     <app-budget-detail 
-    *ngFor="let budgetDetail of budgetDetails" 
+    *ngFor="let budgetDetail of budgetDetails; index as i" 
     [colorTheme]="budgetDetail.colorTheme"
     [freeAmount]="budgetDetail.freeAmount"
     [spentAmount]="budgetDetail.spentAmount"
     [title]="budgetDetail.category"
     [transactions]="budgetDetail.transactions"
+    [index]="i.toString()"
     class="w-100 h-100"
     ></app-budget-detail>
     </div>

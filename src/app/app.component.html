@@ -1,10 +1,18 @@
 
   <div class="position-relative" >
     <div class="position-relative app-container" [ngClass]="{'layout-desktop': isDesktop(), 'brightness': !modalOn}">
-    <app-budgets-page class="w-100"></app-budgets-page>
+    <!-- <app-budgets-page class="w-100"></app-budgets-page> -->
+    <app-pots-page class="w-100"></app-pots-page>
     <app-navigation></app-navigation>
+    
   </div>
-  <app-modal *ngIf="!modalOn" (modalOn)="setModalOff($event)"></app-modal>
+  <!-- <app-pot [pot]="{
+    category: 'Savings',
+    theme: '#277C78',
+    amount: '159.00',
+    target: '2000.00'
+}" class="center"></app-pot> -->
+  <!-- <app-modal *ngIf="!modalOn" (modalOn)="setModalOff($event)" [budgetKeyReference]="'2'"></app-modal> -->
     <!-- <app-home *ngIf="false"  class="w-100" ></app-home>
     <app-transactions-page  class="w-100"></app-transactions-page>  -->
   <!-- <app-spending-summary class="center"></app-spending-summary> -->

@@ -1,21 +1,35 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms'
 import { DropdownComponent } from '../../medium/dropdown/dropdown.component';
 import { InputFieldComponent } from '../../medium/input-field/input-field.component';
 import { PrimaryComponent } from '../../small/buttons/primary/primary.component';
 import { CommonModule } from '@angular/common';
 import { Dropdown } from '../../../shared-interfaces/dropdown.interface';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MediaQueryService } from '../../../shared-services/media-query.service';
+import { BudgetService } from '../../../shared-services/budget.service';
+import { BudgetDetail } from '../../../shared-interfaces/budget-detail.interface';
+import { DestroyComponent } from '../../small/buttons/destroy/destroy.component';
+import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
 
 export type Modal = | "Add" | "Edit" | "Delete"
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DropdownComponent, InputFieldComponent, PrimaryComponent],
+  imports: [CommonModule, ReactiveFormsModule, DropdownComponent, InputFieldComponent, PrimaryComponent, DestroyComponent, TertiaryComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
+
+  budget!: BudgetDetail
+  constructor(private budgetDetailService: BudgetService) {}
+  ngOnInit(): void {
+    this.budget = this.budgetDetailService.getBudget(+this.budgetKeyReference)
+  }
+  @Input() budgetKeyReference: string = ''
+
   categories: Dropdown[] = [
     {title: "Entertainment", code: '', alreadyUsed: false},
     {title: "Bills", code: '', alreadyUsed: false},
@@ -46,7 +60,7 @@ export class ModalComponent {
   ]
 
   onExit() {
-    this.modalOn.next(true)
+    this.modalOn.emit(true)
   }
     form = new FormGroup({
       category: new FormControl(null, [Validators.required]),
@@ -54,12 +68,23 @@ export class ModalComponent {
       theme: new FormControl(null, [Validators.required])
     })
 
-    @Input() type: Modal = "Edit"
+    @Input() type: Modal = "Delete"
     @Output() modalOn = new EventEmitter<boolean>();
 
     onSubmit() {
       console.log(this.form)
     }
+
+    onDelete() {
+      this.budgetDetailService.removeBudget(+this.budgetKeyReference)
+      this.onExit()
+    }
+
+    #mediaQueryService = inject(MediaQueryService)
+           isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+           isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+           isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
+    
 
 }
 function validateNum(control: AbstractControl) {

@@ -12,11 +12,13 @@ import { SpendingSummaryComponent } from './components/large/spending-summary/sp
 import { BudgetDetailComponent } from './components/large/budget-detail/budget-detail.component';
 import { BudgetsPageComponent } from './pages/budgets-page/budgets-page.component';
 import { ModalComponent } from './components/large/modal/modal.component';
+import { PotComponent } from './components/large/pot/pot.component';
+import { PotsPageComponent } from './pages/pots-page/pots-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent],
+  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -27,7 +29,7 @@ export class AppComponent {
    isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
    isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
 
-  modalOn: boolean = false;
+  modalOn: boolean = true;
    
     setModalOff(val: boolean) {
       this.modalOn = val;
