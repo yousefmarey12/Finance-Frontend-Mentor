@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.coords {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;     
+    max-width: 560px;   
+}
+
+.header h1 {
+    color: var(--grey-900);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    color: var(--grey-500);
+}
+
+.description p {
+    color: var(--grey-500);
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.z-6 {
+    z-index: 6;
+}
+
+.z-3 {
+    z-index: 3;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+     gap: 16px;
+}
+
+button {
+    border: none;
+    width: 100%;
+}

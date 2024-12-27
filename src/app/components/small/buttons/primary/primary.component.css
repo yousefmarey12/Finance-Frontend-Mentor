@@ -16,3 +16,9 @@
 .btn-color {
     color: var(--white);
 }
+
+.align-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

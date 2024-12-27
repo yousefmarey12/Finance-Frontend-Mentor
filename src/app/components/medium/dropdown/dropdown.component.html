@@ -1,17 +1,41 @@
 
-<div class="position-relative" style="cursor: pointer;">
+<div class="position-relative z--1" style="cursor: pointer;">
 
 
 <ul appHover class="container border px-250 py-150 text-preset-4 bg-white br-8" (click)="onClick()" [ngClass]="{'active': this.active}">
-    <li *ngIf="iconImg" class="center-x">
-        <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
-        <circle cx="8" cy="8.5" r="8" fill="#277C78"/>
-        </svg>  
-    </li>
-    <li class="w-100 value">
-        <span class="first-letter">{{prefix}}</span>  {{placeholder}}{{value}}
+    
+    <li class="w-100 value space-between ">
+        <div class="center-x">
+
+       
+        <span *ngIf="placeholder.code" class="center-x mr-150">
+            <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
+            <circle cx="8" cy="8.5" r="8" [attr.fill]="placeholder.code" [attr.fill-opacity]="0.25"/>
+            </svg>  
+        </span>
+        <span class="first-letter">{{placeholder.title}}</span><span *ngIf="dropdownValues.length != 0" class="center-x mr-150">
+          
+        </span>
+    </div>
+    <p *ngIf="placeholder.alreadyUsed" class="text-align-end no-text-wrap">Already Used</p>
         <ul class="position-absolute fade options px-250 py-150 bg-white br-8" [@clickDropdown]="dropdownState" [ngClass]="{'d-none': dropdownState == 'close'}">
-            <li #list *ngFor="let value of dropdownValues; index as i" class="w-100" (click)="onClickItem(value)"><p class="text-preset-4"><span  class="first-letter">{{prefix}}</span> {{value}}</p> <hr class="my-150"></li>
+           
+            <li #list *ngFor="let value of dropdownValues; index as i" class="w-100 space-between my-150" (click)="onClickItem(value)">
+
+                <p class="text-preset-4 w-100 align-text">
+                    <span *ngIf="value.code" class="center-x mr-150">
+                        <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
+                        <circle cx="8" cy="8.5" r="8" [attr.fill]="value.code" [attr.fill-opacity]="0.25"/>
+                        </svg>  
+                    </span><span  class="first-letter">{{value.prefix}}</span> {{value.title}}
+                
+                </p> 
+                    <p class="text-align-end no-text-wrap" *ngIf="value.alreadyUsed">
+                        Already Used
+                    </p>
+                    
+            </li>
+            
         </ul>
     </li>
    

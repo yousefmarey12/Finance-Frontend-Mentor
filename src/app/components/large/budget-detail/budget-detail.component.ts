@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
 import { Transaction } from '../../medium/transactions/transactions.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
+import { IconDropdownComponent } from '../../small/icon-dropdown/icon-dropdown.component';
 
 @Component({
   selector: 'app-budget-detail',
   standalone: true,
-  imports: [CommonModule, SpendingSummaryComponent, MiniCardComponent, HeaderComponent, TransactionComponent, TertiaryComponent, DisplayMoney],
+  imports: [CommonModule, SpendingSummaryComponent, MiniCardComponent, HeaderComponent, TransactionComponent, TertiaryComponent, DisplayMoney, IconDropdownComponent],
   templateUrl: './budget-detail.component.html',
   styleUrl: './budget-detail.component.css'
 })
