@@ -26,13 +26,13 @@
               
         </div>
     </div>
-<div *ngIf="isMobile()"class="transactions-mobile">
-    <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person"></app-transaction>
+<div *ngIf="isMobile()"class="transactions">
+    <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" class="my-200"></app-transaction>
 </div>
-<div *ngIf="!isMobile()" class="w-100">
-  <app-transaction-tablet [isHeader]="true"></app-transaction-tablet>
+<div *ngIf="!isMobile()" class="w-100 transactions">
+  <app-transaction [isHeader]="true"></app-transaction>
   <hr>
-  <app-transaction-tablet *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" [isHeader]="false"></app-transaction-tablet>
+  <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" [isHeader]="false" [isFullScreen]="true" class="my-250"></app-transaction>
 </div>
 <div class="inner-nav-mobile" *ngIf="isMobile()">
     <div class="transaction-nav p-200">

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { InputFieldComponent } from '../../components/medium/input-field/input-field.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../shared-services/media-query.service';
-import { TransactionTabletComponent } from '../../components/medium/transaction-tablet/transaction-tablet.component';
 import { PaginationBtnComponent } from '../../components/small/pagination-btn/pagination-btn.component';
 import { DropdownComponent } from '../../components/medium/dropdown/dropdown.component';
 import { Dropdown } from '../../shared-interfaces/dropdown.interface';
@@ -13,7 +12,7 @@ import { Dropdown } from '../../shared-interfaces/dropdown.interface';
 @Component({
   selector: 'app-transactions-page',
   standalone: true,
-  imports: [TransactionComponent, CommonModule, InputFieldComponent, TransactionTabletComponent, PaginationBtnComponent, DropdownComponent  ],
+  imports: [TransactionComponent, CommonModule, InputFieldComponent, PaginationBtnComponent, DropdownComponent  ],
   templateUrl: './transactions-page.component.html',
   styleUrl: './transactions-page.component.css'
 })
