@@ -2,22 +2,21 @@ import { Component, computed, EventEmitter, inject, Input, OnInit, Output } from
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms'
 import { DropdownComponent } from '../../medium/dropdown/dropdown.component';
 import { InputFieldComponent } from '../../medium/input-field/input-field.component';
-import { PrimaryComponent } from '../../small/buttons/primary/primary.component';
 import { CommonModule } from '@angular/common';
 import { Dropdown } from '../../../shared-interfaces/dropdown.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { BudgetService } from '../../../shared-services/budget.service';
 import { BudgetDetail } from '../../../shared-interfaces/budget-detail.interface';
-import { DestroyComponent } from '../../small/buttons/destroy/destroy.component';
-import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
+import { ButtonComponent } from '../../small/button/button.component';
+
 
 export type Modal = | "Add" | "Edit" | "Delete"
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DropdownComponent, InputFieldComponent, PrimaryComponent, DestroyComponent, TertiaryComponent],
+  imports: [CommonModule, ReactiveFormsModule, DropdownComponent, InputFieldComponent, ButtonComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })

@@ -24,7 +24,7 @@
     <div class="spending br p-200 w-100 text-align-center">
         <div class="inner-header w-100">
             <p class="text-preset-3">Latest Spending</p>
-            <app-tertiary [transparent]="true">See All</app-tertiary>
+            <app-button  [state]="{primary: false, secondary: false, tertiary: true, destroy: false }">See All</app-button>
         </div>
         <div class="no-text-wrap w-100">
             <div *ngFor="let transaction of transactions">

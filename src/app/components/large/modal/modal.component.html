@@ -36,24 +36,24 @@
                 </div>
                 <div class="btn w-100" *ngIf="type != 'Delete'" style="cursor: pointer;">
                         <button type="submit" class="w-100">
-                            <app-primary class="w-100">
+                            <app-button>
                                 <p *ngIf="type == 'Add'">Add Budget</p>
                                 <p *ngIf="type == 'Edit'">Save Changes</p>
-                            </app-primary>
+                            </app-button>
                         </button>
                 </div>
                 <div (click)="onDelete()" *ngIf="type == 'Delete'" class="btn w-100" style="cursor: pointer;">
                     <button type="button" class="w-100">
-                        <app-destroy class="w-100">
+                        <app-button [state]="{primary: false, secondary: false, tertiary: false, destroy: true }">
                             <p>Yes, Confirm Deletion</p>
-                        </app-destroy>
+                        </app-button>
                     </button>
                 </div>
                 <div (click)="onExit()" *ngIf="type == 'Delete'" class="btn w-100">
                     <button type="button" class="w-100" >
-                        <app-tertiary [hasIcon]="false" class="w-100">
+                        <app-button [state]="{primary: false, secondary: false, tertiary: true, destroy: false }">
                             <p>No, Go Back</p>
-                        </app-tertiary>
+                        </app-button>
                     </button>
                 </div>
             </form>

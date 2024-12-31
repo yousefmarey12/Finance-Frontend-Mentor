@@ -1,0 +1,44 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: none; 
+    transition: 500ms;  
+}
+
+.btn_primary {
+    background-color: var(--grey-900);
+    color: var(--white);
+}
+
+.btn_secondary {
+    background-color: var(--beige-100);
+    color: var(--grey-900);
+}
+
+.btn_tertiary {
+    background-color: var(--white);
+    color: var(--grey-500);
+}
+
+.btn_destroy {
+    background-color: var(--secondary-red);
+    color: var(--white);
+}
+
+.btn_primary:hover {
+    background-color: var(--grey-500);
+}
+
+.btn_secondary:hover {
+    background-color: var(--white);
+}
+
+.btn_tertiary:hover {
+    color: var(--grey-900);
+}
+
+.btn_destroy:hover {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--color-red, #C94736);
+}

@@ -1,0 +1,16 @@
+
+
+.account-card {
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+}
+.account-card-dark {
+    background-color: var(--grey-900);
+    color: var(--white);
+}
+.account-card__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

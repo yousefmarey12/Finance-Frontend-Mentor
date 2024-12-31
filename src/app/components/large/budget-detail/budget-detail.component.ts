@@ -3,18 +3,18 @@ import { SpendingSummaryComponent } from '../spending-summary/spending-summary.c
 import { MiniCardComponent } from '../../small/mini-card/mini-card.component';
 import { HeaderComponent } from '../../medium/header/header.component';
 import { TransactionComponent } from '../../small/transaction/transaction.component';
-import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
 import { DisplayMoney } from '../../../shared-pipes/display-number.pipe';
 import { CommonModule } from '@angular/common';
 import { Transaction } from '../../medium/transactions/transactions.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { IconDropdownComponent } from '../../small/icon-dropdown/icon-dropdown.component';
+import { ButtonComponent } from '../../small/button/button.component';
 
 @Component({
   selector: 'app-budget-detail',
   standalone: true,
-  imports: [CommonModule, SpendingSummaryComponent, MiniCardComponent, HeaderComponent, TransactionComponent, TertiaryComponent, DisplayMoney, IconDropdownComponent],
+  imports: [CommonModule, SpendingSummaryComponent, MiniCardComponent, HeaderComponent, TransactionComponent, DisplayMoney, IconDropdownComponent, ButtonComponent],
   templateUrl: './budget-detail.component.html',
   styleUrl: './budget-detail.component.css'
 })

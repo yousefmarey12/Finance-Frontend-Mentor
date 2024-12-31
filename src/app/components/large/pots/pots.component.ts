@@ -1,16 +1,16 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
 import { MiniCardComponent } from '../../small/mini-card/mini-card.component';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../medium/header/header.component';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ButtonComponent } from '../../small/button/button.component';
 
 @Component({
   selector: 'app-pots',
   standalone: true,
-  imports: [TertiaryComponent, MiniCardComponent, CommonModule, HeaderComponent],
+  imports: [ButtonComponent, MiniCardComponent, CommonModule, HeaderComponent],
   templateUrl: './pots.component.html',
   styleUrl: './pots.component.css'
 })

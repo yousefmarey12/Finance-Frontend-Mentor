@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
-import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
 import { TransactionComponent } from '../../small/transaction/transaction.component';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { MediaQuery } from '../../../shared-interfaces/media-query.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ButtonComponent } from '../../small/button/button.component';
 export interface Transaction {
   isCredit: boolean,
   person: string,
@@ -16,7 +16,7 @@ export interface Transaction {
 @Component({
   selector: 'app-transactions',
   standalone: true,
-  imports: [TertiaryComponent, TransactionComponent, CommonModule, HeaderComponent],
+  imports: [ButtonComponent, TransactionComponent, CommonModule, HeaderComponent],
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.css'
 })

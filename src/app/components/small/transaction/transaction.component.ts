@@ -16,4 +16,5 @@ export class TransactionComponent {
   @Input() date: string = "19 Aug 2024"
   @Input() category: string = ''
   @Input() hasPhoto: boolean = true
+  @Input() isFullScreen: boolean = false;
 }

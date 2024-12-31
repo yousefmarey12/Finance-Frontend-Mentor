@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { MediaQueryService } from './shared-services/media-query.service';
 import { NavigationComponent } from './components/medium/navigation/navigation.component';
-import { MediaQuery } from './shared-interfaces/media-query.interface';
 import { toSignal } from "@angular/core/rxjs-interop"
 import { CommonModule } from '@angular/common';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
@@ -15,11 +14,13 @@ import { ModalComponent } from './components/large/modal/modal.component';
 import { PotComponent } from './components/large/pot/pot.component';
 import { PotsPageComponent } from './pages/pots-page/pots-page.component';
 import { RecurringBillComponent } from './components/medium/recurring-bill/recurring-bill.component';
+import { ButtonComponent } from './components/small/button/button.component';
+import { TransactionComponent } from './components/small/transaction/transaction.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent, RecurringBillComponent],
+  imports: [RouterOutlet, TransactionComponent , HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent, RecurringBillComponent, ButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

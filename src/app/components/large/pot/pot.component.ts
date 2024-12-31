@@ -6,13 +6,12 @@ import { MediaQueryService } from '../../../shared-services/media-query.service'
 import { PotService } from '../../../shared-services/pot.service';
 import { DisplayMoney } from '../../../shared-pipes/display-number.pipe';
 import { CommonModule } from '@angular/common';
-import { TertiaryComponent } from '../../small/buttons/tertiary/tertiary.component';
-import { SecondaryComponent } from '../../small/buttons/secondary/secondary.component';
+import { ButtonComponent } from '../../small/button/button.component';
 
 @Component({
   selector: 'app-pot',
   standalone: true,
-  imports: [IconDropdownComponent, DisplayMoney, CommonModule, SecondaryComponent],
+  imports: [IconDropdownComponent, DisplayMoney, CommonModule, ButtonComponent],
   templateUrl: './pot.component.html',
   styleUrl: './pot.component.css'
 })

@@ -4,12 +4,11 @@ import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
 import { HoverDirective } from '../../../shared-directives/hover.directive';
-import { SafeHtmlPipe } from '../../../shared-pipes/safe-html.pipe';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [NavigationBtnComponent, CommonModule, HoverDirective, SafeHtmlPipe],
+  imports: [NavigationBtnComponent, CommonModule, HoverDirective],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
