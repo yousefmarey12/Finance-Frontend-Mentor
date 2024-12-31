@@ -14,11 +14,12 @@ import { BudgetsPageComponent } from './pages/budgets-page/budgets-page.componen
 import { ModalComponent } from './components/large/modal/modal.component';
 import { PotComponent } from './components/large/pot/pot.component';
 import { PotsPageComponent } from './pages/pots-page/pots-page.component';
+import { RecurringBillComponent } from './components/medium/recurring-bill/recurring-bill.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent],
+  imports: [RouterOutlet, HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent, RecurringBillComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

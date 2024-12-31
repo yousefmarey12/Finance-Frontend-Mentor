@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top-flex {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.lower-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.color-900 {
+    color: var(--grey-900);
+}
+
+.green {
+    color: var(--secondary-green);
+}
+.flex {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* .lower-flex {
+    display: flex;
+    justify-content: ;
+} */
+    .icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 32px;
+        background: url("/emma-richardson.jpg") lightgray 50% / cover no-repeat;
+    }

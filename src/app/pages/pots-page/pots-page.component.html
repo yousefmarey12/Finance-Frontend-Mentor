@@ -9,7 +9,7 @@
     *ngFor="let pot of pots; index as i" 
     [pot]="pot"
     [index]="i.toString()"
-    class="h-100"
+    [ngClass]="{'flex-grow-desktop': isDesktop(), 'flex-grow-tablet': !isDesktop()}"
     ></app-pot>
     
  </div>

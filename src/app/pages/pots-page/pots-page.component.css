@@ -17,6 +17,15 @@
     gap: 24px;
 }
 
+.flex-grow-desktop {
+    flex: 0 0 calc(50% - 24px);
+}
+
+.flex-grow-tablet {
+    width: 100%;
+    flex: 0 0 100%;
+}
+
 app-pot {
     flex: 0 0 48%;
 }
