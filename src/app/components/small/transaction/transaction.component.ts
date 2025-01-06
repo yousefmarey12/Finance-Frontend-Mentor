@@ -17,5 +17,4 @@ export class TransactionComponent {
   @Input() category: string = ''
   @Input() hasPhoto: boolean = true
   @Input() isFullScreen: boolean = false;
-  @Input() isHeader: boolean = false
 }

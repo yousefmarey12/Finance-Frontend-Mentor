@@ -30,9 +30,22 @@
     <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" class="my-200"></app-transaction>
 </div>
 <div *ngIf="!isMobile()" class="w-100 transactions">
-  <app-transaction [isHeader]="true"></app-transaction>
+  <div class="transaction">
+    <div class="transaction__person">
+        <p class="mt-100 text-preset-5 grey-500">Recipient / Sender</p>
+    </div>
+    <div class="transaction__category text-align-start ">
+        <p class="mt-100 text-preset-5 grey-500">Category</p>
+    </div>
+    <div class="transaction__date text-align-start ">
+        <p class="mt-100 text-preset-5 grey-500">Transaction Date</p>
+    </div>
+    <div class="transaction__amount text-align-end ">
+        <p class="mt-100 text-preset-5 grey-500 w-100">Amount</p>
+    </div>
+</div>
   <hr>
-  <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" [isHeader]="false" [isFullScreen]="true" class="my-250"></app-transaction>
+  <app-transaction *ngFor="let transaction of transactions;" [amount]="transaction.amount" [date]="transaction.date" [isCredit]="transaction.isCredit" [category]="transaction.category || ''" [person]="transaction.person" [isFullScreen]="true" class="my-250"></app-transaction>
 </div>
 <div class="inner-nav-mobile" *ngIf="isMobile()">
     <div class="transaction-nav p-200">

@@ -1,38 +1,27 @@
 
-<div *ngIf="isHeader" class="transaction mx-auto">
-    <div class="cell cell-person img-title ">
-        <p class="mt-100 text-preset-5 grey-500">Recipient / Sender</p>
-    </div>
-    <div class="cell cell-category text-align-start ">
-        <p class="mt-100 text-preset-5 grey-500">Category</p>
-    </div>
-    <div class="cell cell-date text-align-start ">
-        <p class="mt-100 text-preset-5 grey-500">Transaction Date</p>
-    </div>
-    <div class="cell cell-amount w-100 text-align-end ">
-        <p class="mt-100 text-preset-5 grey-500 w-100">Amount</p>
-    </div>
-</div>
-<div class="transaction" *ngIf="!isHeader" >
-   
-    <div class="img-title " [ngClass]="{'cell cell-person': isFullScreen}">
-        <div *ngIf="hasPhoto" class="profile-pic">
+
+
+
+<div class="transaction" [ngClass]="{'transaction_fullscreen': isFullScreen}" >
+    <div class="transaction__entity">
+        <div *ngIf="hasPhoto" class="transaction__photo">
 
         </div>
         <div class="ml-200">
-            <p class="text-preset-4-bold">{{ person }}</p>
-            <p *ngIf="!isFullScreen" class="text-preset-5" style="color: #696868;">{{category}}</p>
+            <p class="transaction__person text-preset-4-bold">{{ person }}</p>
+            <p *ngIf="!isFullScreen" class="transaction__category grey text-preset-5">{{category}}</p>
         </div>
     
     </div>
-    <div *ngIf="isFullScreen" class="cell cell-category text-align-start ">
-        <p class="mt-100 text-preset-5 grey-500">{{category}}</p>
+    <div *ngIf="isFullScreen" class="transaction__category my-auto  text-align-start ">
+        <p class="mt-100 text-preset-5">{{category}}</p>
     </div>
-    <div class="value text-preset-4-bold text-align-start  {{isCredit ? 'green' : 'black'}}" [ngClass]="{'cell cell-date': isFullScreen}">
-        <p>{{isCredit ? '+' : '-'}}${{amount | money}}</p>
-        <p *ngIf="!isFullScreen" class="mt-100 text-preset-5 grey">19 Aug 2024</p>
+    <div class="transaction__amount transaction__date text-preset-4-bold text-align-end  {{isCredit ? 'green' : 'black'}}">
+        <p *ngIf="isFullScreen" class="mt-100 text-preset-5 grey"> {{date}} </p>
+        <p *ngIf="!isFullScreen">{{isCredit ? '+' : '-'}}${{amount | money}}</p>
+        <p *ngIf="!isFullScreen" class="mt-100 text-preset-5 grey">{{date}}</p>
     </div>
-    <div *ngIf="isFullScreen" class="cell cell-amount w-100 text-align-end ">
+    <div *ngIf="isFullScreen" class="transaction__amount my-auto w-100 text-align-end ">
         <p class="mt-100 text-preset-4-bold w-100 {{isCredit ? 'green' : 'black'}}">{{isCredit ? '+' : '-'}}${{amount | money}}</p>
     </div>
 </div>

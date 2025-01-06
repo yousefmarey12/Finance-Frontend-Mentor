@@ -1,15 +1,31 @@
-.img-title {
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transaction .transaction__entity {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.profile-pic {
+
+
+
+
+.transaction__photo {
     width: 32px;
     height: 32px;
     border-radius: 32px;
     background: url("/emma-richardson.jpg") lightgray 50% / cover no-repeat;
 }
+
+
+
+.transaction__category {
+    color: var(--grey-500);
+}
+
 .cell-person {
     flex: 3;
 }
@@ -36,25 +52,38 @@
     color: var(--grey-900);
 }
 
-.value {
-    width: fit-content;
+
+
+.transaction * {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 
 
 
-.transaction {
+
+
+
+.transaction_fullscreen .transaction__entity {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    flex: 3;
 }
-
-.transaction_fullscreen {
+.transaction_fullscreen .transaction__category, .transaction_fullscreen .transaction__amount {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    flex: 2;
 }
 
+.transaction_fullscreen .transaction__date {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
 .grey {
     color: var(--grey-500);
 }
