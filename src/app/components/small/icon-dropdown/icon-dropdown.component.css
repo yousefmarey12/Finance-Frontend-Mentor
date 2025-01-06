@@ -1,4 +1,4 @@
-.container {
+.dropdown__container {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -37,7 +37,7 @@ li {
     stroke: var(--beige-100);
 }
 
-.options {
+.dropdown__options {
    top: 110%; 
    left: 0%;
    transform: translate(-100%, 0);
@@ -48,7 +48,7 @@ li {
    z-index: 5;
 }
 
-.options-filled {
+.dropdown__options_filled {
     display: none;
 }
 
