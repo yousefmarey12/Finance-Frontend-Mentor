@@ -18,6 +18,30 @@
     justify-content: space-between;
 }
 
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction > * {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+}
+
+.transaction .transaction__person {
+    flex: 3;
+}
+
+.transaction .transaction__category, .transaction .transaction__amount {
+    flex: 2;
+}
+
+.transaction .transaction__date {
+    flex: 1;
+}
+
 .transactions {
     display: flex;
     flex-direction: column;
