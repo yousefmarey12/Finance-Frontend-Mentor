@@ -16,11 +16,12 @@ import { PotsPageComponent } from './pages/pots-page/pots-page.component';
 import { RecurringBillComponent } from './components/medium/recurring-bill/recurring-bill.component';
 import { ButtonComponent } from './components/small/button/button.component';
 import { TransactionComponent } from './components/small/transaction/transaction.component';
+import { BillsPageComponent } from './pages/bills-page/bills-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TransactionComponent , HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent, RecurringBillComponent, ButtonComponent],
+  imports: [RouterOutlet, TransactionComponent , HomeComponent, NavigationComponent, CommonModule, TransactionsPageComponent, DropdownComponent, SpendingSummaryComponent, BudgetDetailComponent, BudgetsPageComponent, ModalComponent, PotComponent, PotsPageComponent, RecurringBillComponent, ButtonComponent, BillsPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

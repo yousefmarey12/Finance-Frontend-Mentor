@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, computed, inject, Input } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MediaQueryService } from '../../../shared-services/media-query.service';
 
 @Component({
   selector: 'app-recurring-bill',
@@ -13,4 +15,8 @@ export class RecurringBillComponent {
   @Input() title: string = 'Elevate Education' 
   @Input() day: string = '5th' 
   @Input() isPaid: boolean = true;
+   #mediaQueryService = inject(MediaQueryService)
+              isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+              isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+              isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
 }
