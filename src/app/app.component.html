@@ -1,15 +1,13 @@
 
-  <div class="position-relative" >
-    <div class="position-relative app-container" [ngClass]="{'layout-desktop': isDesktop(), 'brightness': !modalOn}">
-      <!-- <app-home></app-home> -->
-    <!-- <app-budgets-page class="w-100"></app-budgets-page> -->
-    <!-- <app-pots-page class="w-100"></app-pots-page> -->
-     <app-bills-page></app-bills-page>
-     <!-- <app-button [state]="{primary: false, secondary: false, tertiary: false, destroy: true }">Recurring Bills</app-button> -->
-     <!-- <app-transactions-page  class="w-100"></app-transactions-page>  -->
-    <app-navigation></app-navigation>
+  <div class="position-relative app-container">
     
-  </div>
+    <div class="position-relative" [ngClass]="{'layout-desktop': isDesktop(), 'brightness': !modalOn}">
+        <router-outlet></router-outlet>
+
+      
+      <app-navigation></app-navigation>
+    </div>
+
   <!-- <app-pot [pot]="{
     category: 'Savings',
     theme: '#277C78',

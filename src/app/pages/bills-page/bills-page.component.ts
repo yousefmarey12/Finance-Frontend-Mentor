@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { DisplayMoney } from '../../shared-pipes/display-number.pipe';
 import { InputFieldComponent } from '../../components/medium/input-field/input-field.component';
 import { RecurringBillComponent } from '../../components/medium/recurring-bill/recurring-bill.component';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MediaQueryService } from '../../shared-services/media-query.service';
+import { DropdownComponent } from '../../components/medium/dropdown/dropdown.component';
+import { Dropdown } from '../../shared-interfaces/dropdown.interface';
+import { IconDropdownComponent } from '../../components/small/icon-dropdown/icon-dropdown.component';
 interface RecurringBill {
   amount: string,
   title: string,
@@ -12,11 +17,16 @@ interface RecurringBill {
 @Component({
   selector: 'app-bills-page',
   standalone: true,
-  imports: [DisplayMoney, InputFieldComponent, RecurringBillComponent, CommonModule],
+  imports: [DisplayMoney, InputFieldComponent, RecurringBillComponent, CommonModule, DropdownComponent, IconDropdownComponent],
   templateUrl: './bills-page.component.html',
   styleUrl: './bills-page.component.css'
 })
 export class BillsPageComponent implements OnInit {
+  #mediaQueryService = inject(MediaQueryService)
+    isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
+    isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
+    isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
+     
   totalPaid: string = ''
   totalDue: string = ''
   numberOfPaid: string = ''
@@ -54,5 +64,38 @@ export class BillsPageComponent implements OnInit {
     {title: "Juliet Restaurant", day: "28th", amount: "950.00", isPaid: true},
   ]
 
+  dropdown: Dropdown = {
+    code: '',
+    title: 'Latest',
+    alreadyUsed: false
+  }
+
+  dropdownValues: Dropdown[] = [
+    {
+    code: '',
+    title: 'Latest',
+    alreadyUsed: false
+    },
+    {
+      code: '',
+      title: 'A to Z',
+      alreadyUsed: false
+    },
+    {
+      code: '',
+      title: 'Z to A',
+      alreadyUsed: false
+    },
+    {
+      code: '',
+      title: 'Highest',
+      alreadyUsed: false
+    },
+    {
+      code: '',
+      title: 'Lowest',
+      alreadyUsed: false
+    }
+]
   
 }

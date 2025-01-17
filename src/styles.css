@@ -29,6 +29,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+html, body, app-root {
+    height: 100%;
+}
 .no-text-wrap {
     white-space: nowrap;
     float: left;
