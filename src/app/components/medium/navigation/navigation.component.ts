@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { NavigationBtnComponent } from '../../small/navigation-btn/navigation-btn.component';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -6,6 +6,8 @@ import { MediaQueryService } from '../../../shared-services/media-query.service'
 import { HoverDirective } from '../../../shared-directives/hover.directive';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SafeHtmlPipe } from '../../../shared-pipes/safe-html.pipe';
 
 
 interface NavLink {
@@ -16,22 +18,35 @@ interface NavLink {
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [NavigationBtnComponent, CommonModule, HoverDirective, RouterLink, RouterLinkActive],
+  imports: [NavigationBtnComponent, CommonModule, HoverDirective, RouterLink, RouterLinkActive, SafeHtmlPipe],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css'
+  styleUrl: './navigation.component.css',
+  animations: [
+        trigger('minimize', [
+          transition('* => void', [animate(100, style({
+            transform: 'translateX(100%)'
+          }))]),
+          transition('void => *', style(
+            {
+              transform: 'translateX(-100%)'
+            }
+          ))
+        ])
+      ]
 })
 
 export class NavigationComponent {
  router = inject(Router)
  route = inject(ActivatedRoute)
+ isMinimized = true
   #mediaQueryService = inject(MediaQueryService)
             isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
             isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
             isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
-
+  isShown: WritableSignal<boolean> = signal(true)
           navigationBtns = signal([
-              {title: "Overview", isActive: false, path: 'overview'},
-              {title: "Transactions", isActive: true, path: 'transactions'},
+              {title: "Overview", isActive: true, path: 'overview'},
+              {title: "Transactions", isActive: false, path: 'transactions'},
               {title: "Budgets", isActive: false, path: 'budgets'},
               {title: "Pots", isActive: false, path: 'pots'},
               {title: "Recurring Bills", isActive: false, path: 'bills'},
@@ -54,7 +69,11 @@ export class NavigationComponent {
         <path d="M20.25 3.75L3.75 3.75C3.35218 3.75 2.97064 3.90804 2.68934 4.18934C2.40804 4.47064 2.25 4.85218 2.25 5.25L2.25 19.5C2.25007 19.6278 2.28281 19.7535 2.34511 19.8651C2.40741 19.9768 2.49721 20.0706 2.60597 20.1378C2.71474 20.2049 2.83887 20.2432 2.96657 20.2489C3.09427 20.2546 3.22131 20.2275 3.33563 20.1703L6 18.8381L8.66437 20.1703C8.76857 20.2225 8.88348 20.2496 9 20.2496C9.11652 20.2496 9.23143 20.2225 9.33563 20.1703L12 18.8381L14.6644 20.1703C14.7686 20.2225 14.8835 20.2496 15 20.2496C15.1165 20.2496 15.2314 20.2225 15.3356 20.1703L18 18.8381L20.6644 20.1703C20.7787 20.2275 20.9057 20.2546 21.0334 20.2489C21.1611 20.2432 21.2853 20.2049 21.394 20.1378C21.5028 20.0706 21.5926 19.9768 21.6549 19.8651C21.7172 19.7535 21.7499 19.6278 21.75 19.5L21.75 5.25C21.75 4.85218 21.592 4.47064 21.3107 4.18934C21.0294 3.90804 20.6478 3.75 20.25 3.75ZM16.5 13.5L7.5 13.5C7.30109 13.5 7.11032 13.421 6.96967 13.2803C6.82902 13.1397 6.75 12.9489 6.75 12.75C6.75 12.5511 6.82902 12.3603 6.96967 12.2197C7.11032 12.079 7.30109 12 7.5 12L16.5 12C16.6989 12 16.8897 12.079 17.0303 12.2197C17.171 12.3603 17.25 12.5511 17.25 12.75C17.25 12.9489 17.171 13.1397 17.0303 13.2803C16.8897 13.421 16.6989 13.5 16.5 13.5ZM16.5 10.5L7.5 10.5C7.30109 10.5 7.11032 10.421 6.96967 10.2803C6.82902 10.1397 6.75 9.94891 6.75 9.75C6.75 9.55109 6.82902 9.36032 6.96967 9.21967C7.11032 9.07902 7.30109 9 7.5 9L16.5 9C16.6989 9 16.8897 9.07902 17.0303 9.21967C17.171 9.36032 17.25 9.55109 17.25 9.75C17.25 9.94891 17.171 10.1397 17.0303 10.2803C16.8897 10.421 16.6989 10.5 16.5 10.5Z" fill="#B3B3B3"/>
       </svg>`
             ]
-
+          minimizationIcons: string[] = [
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+      <path d="M15.0001 8.26002L15.0001 17.26C15.0001 17.4589 14.9211 17.6497 14.7804 17.7904C14.6398 17.931 14.449 18.01 14.2501 18.01H12.0001L12.0001 21.76C12.0002 21.9084 11.9563 22.0536 11.8739 22.177C11.7915 22.3005 11.6743 22.3967 11.5372 22.4535C11.4001 22.5103 11.2492 22.5252 11.1036 22.4962C10.9581 22.4672 10.8244 22.3957 10.7195 22.2906L1.71948 13.2906C1.64974 13.221 1.59443 13.1383 1.55668 13.0472C1.51894 12.9562 1.49951 12.8586 1.49951 12.76C1.49951 12.6615 1.51894 12.5639 1.55668 12.4728C1.59443 12.3818 1.64974 12.2991 1.71948 12.2294L10.7195 3.2294C10.8244 3.12439 10.9581 3.05286 11.1036 3.02387C11.2492 2.99489 11.4001 3.00974 11.5372 3.06655C11.6743 3.12337 11.7915 3.21959 11.8739 3.34303C11.9563 3.46648 12.0002 3.6116 12.0001 3.76002V7.51002H14.2501C14.449 7.51002 14.6398 7.58904 14.7804 7.72969C14.9211 7.87034 15.0001 8.06111 15.0001 8.26002ZM17.2501 7.51002C17.0512 7.51002 16.8604 7.58904 16.7198 7.72969C16.5791 7.87034 16.5001 8.06111 16.5001 8.26002V17.26C16.5001 17.4589 16.5791 17.6497 16.7198 17.7904C16.8604 17.931 17.0512 18.01 17.2501 18.01C17.449 18.01 17.6398 17.931 17.7804 17.7904C17.9211 17.6497 18.0001 17.4589 18.0001 17.26L18.0001 8.26002C18.0001 8.06111 17.9211 7.87034 17.7804 7.72969C17.6398 7.58904 17.449 7.51002 17.2501 7.51002ZM20.2501 7.51002C20.0512 7.51002 19.8604 7.58904 19.7198 7.72969C19.5791 7.87034 19.5001 8.06111 19.5001 8.26002L19.5001 17.26C19.5001 17.4589 19.5791 17.6497 19.7198 17.7904C19.8604 17.931 20.0512 18.01 20.2501 18.01C20.449 18.01 20.6398 17.931 20.7804 17.7904C20.9211 17.6497 21.0001 17.4589 21.0001 17.26L21.0001 8.26002C21.0001 8.06111 20.9211 7.87034 20.7804 7.72969C20.6398 7.58904 20.449 7.51002 20.2501 7.51002Z" fill="#B3B3B3"/>
+    </svg>`
+          ]
         navigateTo(path: string) {
    
            this.navigationBtns.update(arr => {
@@ -73,5 +92,9 @@ export class NavigationComponent {
           console.log(this.navigationBtns())
           this.router.navigate(['/' + path]);
          
+        }
+
+        toggleMinimization() {
+          this.isShown.update((bool: boolean) => !bool)
         }
 }

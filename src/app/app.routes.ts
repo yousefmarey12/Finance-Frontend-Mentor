@@ -7,6 +7,11 @@ import { TransactionsPageComponent } from './pages/transactions-page/transaction
 
 export const routes: Route[] = [
     {
+        path: '',
+        redirectTo: '/overview',
+        pathMatch: 'full'
+    },
+    {
         path: 'overview',
         component: HomeComponent
     },
