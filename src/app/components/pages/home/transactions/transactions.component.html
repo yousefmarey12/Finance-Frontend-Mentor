@@ -1,0 +1,12 @@
+<div class="bg-white" [ngClass]="{'container py-300 px-250 br': isMobile() || isTablet(), 'container p-400 br': isDesktop()}">
+    <app-header [title]="'Transactions'">View All</app-header>
+    <div class="transactions w-100 mt-400">
+        <app-transaction *ngFor="let transaction of transactions"
+        [amount]="transaction.amount"
+        [date]="transaction.date"
+        [person]="transaction.person"
+        [isCredit]="transaction.isCredit"
+        class="my-250"
+        ></app-transaction>
+    </div>
+</div>
