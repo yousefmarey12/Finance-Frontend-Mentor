@@ -1,0 +1,62 @@
+.bill {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bill .bill__title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--grey-900);
+}
+
+.bill .bill__description {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bill .bill__date {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.bill .bill__amount {
+    color: var(--grey-900);
+}
+
+.bill .bill__description .bill__amount_unpaid {
+    color: var(--secondary-red) ;
+}
+
+.bill_large {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.bill_large .bill__title {
+    width: 100%;
+    align-items: center;
+}
+.bill_large .bill__description {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.green {
+    color: var(--secondary-green);
+}
+
+
+    .icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 32px;
+        background: url("/Ellipse13.svg") lightgray 50% / cover no-repeat;
+    }

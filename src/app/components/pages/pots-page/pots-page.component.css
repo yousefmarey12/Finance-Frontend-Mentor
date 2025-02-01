@@ -1,0 +1,52 @@
+:host {
+    width: 100%;
+}
+.brightness {
+    background: rgba(0, 0, 0, 0.50);
+    filter: brightness(50%);
+}
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.inner-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.flex-grow-desktop {
+    flex: 0 0 calc(50% - 24px);
+}
+
+.flex-grow-tablet {
+    width: 100%;
+    flex: 0 0 100%;
+}
+
+app-pot {
+    flex: 0 0 48%;
+}
+
+.container-desktop {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.flex p {
+    color: var(--grey-900);
+}
+
+

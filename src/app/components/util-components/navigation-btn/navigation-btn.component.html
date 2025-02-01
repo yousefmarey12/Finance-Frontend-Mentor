@@ -1,0 +1,6 @@
+<div  appHover [ngClass]="{ 'container-nav-btn-desktop': isDesktop(), 'container-nav-btn-tablet py-150': isTablet(), 'container-nav-btn-mobile': isMobile(), 'active': isActive}" style="cursor: pointer;">  
+        <div #svgContainer>
+                
+        </div>
+        <p *ngIf="isShown()" [@minimize] [ngClass]="{'mt-50 text-preset-5': isTablet(), 'ml-200 text-preset-3 w-fit-content': isDesktop(), 'd-none': isMobile()}" style="float: left;  white-space: nowrap;">{{btnTitle}}</p>
+</div> 

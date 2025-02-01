@@ -1,0 +1,132 @@
+:host {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 32px; /* Trying to force it to take the full width */
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction > * {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+}
+
+.transaction .transaction__person {
+    flex: 3;
+}
+
+.transaction .transaction__category, .transaction .transaction__amount {
+    flex: 2;
+}
+
+.transaction .transaction__date {
+    flex: 1;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.icon {
+    /* padding-right: 30px; */
+    background: url("/magnify-icon.svg") no-repeat right;
+    background-position: 95% 50%;
+    background-size: 20px;
+  }
+
+  .form-border {
+    border: 1px solid var(--color-beige-500, #98908B);
+  }
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.inner-nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transaction-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--beige-500, #98908B);
+    height: 40px;
+    background-color: var(--white);
+    transition: 500ms;
+    cursor: pointer;
+}
+
+.transaction-nav:hover {
+    background-color: var(--beige-500);
+    color: var(--white);
+}
+
+.active p {
+    color: var(--white);
+}
+
+.active {
+    background-color: var(--grey-900);
+}
+
+.search-bar p {
+    color: var(--grey-500);
+}
+
+.input-field-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+.inner-nav-tablet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-numbers {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.filter-sort {
+    display: flex;
+    gap: 24px;
+}
