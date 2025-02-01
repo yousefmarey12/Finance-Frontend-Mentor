@@ -23,7 +23,10 @@
     --white: #fff
 
 }
-
+.brightness {
+    background: rgba(0, 0, 0, 0.50);
+    filter: brightness(50%);
+}
 * {
     margin: 0;
     padding: 0;
@@ -452,6 +455,11 @@ html, body, app-root {
     padding: 40px;
 }
 
+.mx-0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .mx-50 {
     margin-right: 4px;
     margin-left: 4px;
@@ -485,6 +493,11 @@ html, body, app-root {
 .mx-500 {
     margin-right: 40px;
     margin-left: 40px;
+}
+
+.my-0 {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .my-50 {

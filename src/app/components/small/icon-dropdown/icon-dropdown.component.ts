@@ -1,7 +1,11 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-
+import { Component, inject, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+export interface navigationConfig {
+  title: string,
+  path: string
+}
 @Component({
   selector: 'app-icon-dropdown',
   standalone: true,
@@ -20,19 +24,26 @@ import { Component, Input } from '@angular/core';
       ])
     ]
 })
+
 export class IconDropdownComponent {
   dropdownState: string = 'close'
-
-  @Input() items: string[] = []
+  router = inject(Router)
+  route = inject(ActivatedRoute)
+  @Input() items: navigationConfig[] = []
   active: boolean = false
   
   value: string = ''
-  onClickItem(value: string) {
-    this.value = value
-    
+  onClickItem(value: navigationConfig) {
+    this.value = value.title
+    console.log("route is")
+    console.log(this.route)
+    this.router.navigate([value.path], {
+      relativeTo:  this.route
+    })
   }
 
   onClick() {
+
     if (this.dropdownState == 'close') {
       this.dropdownState = 'open'
     }
@@ -40,5 +51,6 @@ export class IconDropdownComponent {
       this.dropdownState = 'close'
     }
     this.active = true;
+   
   }
 }

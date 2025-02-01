@@ -15,7 +15,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   animations: [
       trigger('minimize', [
         transition('* => void', [animate(100, style({
-          transform: 'translateX(100%)'
+          transform: 'translateX(-100%)'
         }))]),
         transition('void => *', style(
           {

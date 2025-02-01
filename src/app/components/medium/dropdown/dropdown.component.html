@@ -8,7 +8,7 @@
         <div class="center-x">
 
        
-        <span *ngIf="placeholder.code" class="center-x mr-150">
+        <span *ngIf="placeholder?.code" class="center-x mr-150">
             <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
             <circle cx="8" cy="8.5" r="8" [attr.fill]="placeholder.code" [attr.fill-opacity]="0.25"/>
             </svg>  
@@ -23,7 +23,7 @@
             <li #list *ngFor="let value of dropdownValues; index as i" class="w-100 space-between my-150" (click)="onClickItem(value)">
 
                 <p class="text-preset-4 w-100 align-text">
-                    <span *ngIf="value.code" class="center-x mr-150">
+                    <span *ngIf="value?.code" class="center-x mr-150">
                         <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
                         <circle cx="8" cy="8.5" r="8" [attr.fill]="value.code" [attr.fill-opacity]="0.25"/>
                         </svg>  

@@ -17,6 +17,7 @@ import { RecurringBillComponent } from './components/medium/recurring-bill/recur
 import { ButtonComponent } from './components/small/button/button.component';
 import { TransactionComponent } from './components/small/transaction/transaction.component';
 import { BillsPageComponent } from './pages/bills-page/bills-page.component';
+import { ModalService } from './shared-services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -31,12 +32,9 @@ export class AppComponent {
    isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
    isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
    isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
-
-  modalOn: boolean = true;
+   modalService = inject(ModalService)
+   modalOn = this.modalService.modalOn
    
-    setModalOff(val: boolean) {
-      this.modalOn = val;
-    }
-
+ 
 
 }

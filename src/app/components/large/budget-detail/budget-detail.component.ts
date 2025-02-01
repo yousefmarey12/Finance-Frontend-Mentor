@@ -8,8 +8,9 @@ import { CommonModule } from '@angular/common';
 import { Transaction } from '../../medium/transactions/transactions.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MediaQueryService } from '../../../shared-services/media-query.service';
-import { IconDropdownComponent } from '../../small/icon-dropdown/icon-dropdown.component';
+import { IconDropdownComponent, navigationConfig } from '../../small/icon-dropdown/icon-dropdown.component';
 import { ButtonComponent } from '../../small/button/button.component';
+import { Dropdown } from '../../../shared-interfaces/dropdown.interface';
 
 @Component({
   selector: 'app-budget-detail',
@@ -19,11 +20,12 @@ import { ButtonComponent } from '../../small/button/button.component';
   styleUrl: './budget-detail.component.css'
 })
 export class BudgetDetailComponent implements OnInit {
-  @Input() colorTheme: string = ''
+  @Input() colorTheme: Dropdown = {title: ''}
   @Input() freeAmount: string = ''
   @Input() spentAmount: string = ''
-  @Input() title: string = ''
+  @Input() title: Dropdown = {title: ''}
   @Input() transactions: Transaction[] = []
+  items: navigationConfig[] = []
   @Input() index!: string
   maximum: string = ''
   amountPercentage: string = '' 
@@ -34,5 +36,16 @@ export class BudgetDetailComponent implements OnInit {
   ngOnInit(): void {
   this.maximum = ((+this.spentAmount) + (+this.freeAmount)).toString()
   this.amountPercentage = (((+this.freeAmount)/(+this.maximum)) * 100).toString()
+  this.items  = [
+    {
+      title: 'Edit Budget',
+      path: ('edit/' + this.index)
+    },
+    {
+      title: 'Delete Budget',
+      path: ('delete/' + this.index)
+    }
+  ]
   }
+ 
 }

@@ -2,12 +2,12 @@
     <div class="header w-100">
         <div class="inner-header">
             <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
-                <circle cx="8" cy="8.5" r="8" [attr.fill]="pot.theme"/>
+                <circle cx="8" cy="8.5" r="8" [attr.fill]="pot.theme.title"/>
                 </svg>  
-            <p class="ml-200 text-preset-2">{{pot.category}}</p>
+            <p class="ml-200 text-preset-2">{{pot.category.title}}</p>
         </div>
         
-       <app-icon-dropdown [items]="['Edit Budget', 'Delete Budget']"></app-icon-dropdown>
+       <app-icon-dropdown [items]="items"></app-icon-dropdown>
     </div>
     <div class="description w-100">
         <div class="header">
@@ -16,7 +16,7 @@
         </div>
        
         <div class="w-100 progress-container p-50 h-100 position-relative">
-            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': pot.theme}">
+            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': pot.theme.title}">
                 <!-- Calculate width -->
             </div>
         </div>

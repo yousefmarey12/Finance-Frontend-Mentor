@@ -2,22 +2,22 @@
     <div class="header w-100">
         <div class="inner-header">
             <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" >
-                <circle cx="8" cy="8.5" r="8" [attr.fill]="colorTheme"/>
+                <circle cx="8" cy="8.5" r="8" [attr.fill]="colorTheme.title"/>
                 </svg>  
-            <p class="ml-200 text-preset-2">{{title}}</p>
+            <p class="ml-200 text-preset-2">{{title.title}}</p>
         </div>
         
-       <app-icon-dropdown [items]="['Edit Budget', 'Delete Budget']"></app-icon-dropdown>
+       <app-icon-dropdown [items]="items"></app-icon-dropdown>
     </div>
     <div class="description w-100">
         <p class="text-preset-4">Maximum of ${{maximum | money}}</p>
         <div class="w-100 progress-container p-50 h-100 position-relative">
-            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': colorTheme}">
+            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': colorTheme.title}">
                 <!-- Calculate width -->
             </div>
         </div>
         <div class="space-between w-100">
-            <app-mini-card [color]="colorTheme" [title]="'Spent'" [amount]="spentAmount | money"></app-mini-card>
+            <app-mini-card [color]="colorTheme.title" [title]="'Spent'" [amount]="spentAmount | money"></app-mini-card>
             <app-mini-card  [color]="'#F8F4F0'" [title]="'Free'" [amount]="freeAmount | money"></app-mini-card>
         </div>
     </div>

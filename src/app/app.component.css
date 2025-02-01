@@ -7,7 +7,7 @@
 
 .brightness {
     background: rgba(0, 0, 0, 0.50);
-    filter: brightness(-50%);
+    filter: brightness(50%);
 }
 
 .brightness2 {
