@@ -18,6 +18,7 @@ import { AuthForm } from './shared-interfaces/auth-form.interface';
 export const modalResolver: ResolveFn<{modal: ModalConfig, item: BudgetDetail | Pot | null}> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     let modalService = inject(ModalService)
     console.log("state.url")
+    console.log("hellllooooo")
     console.log(state.url)
     let number = state.url.match(/\d+/g)
     console.log("state.url.includes('pot')")

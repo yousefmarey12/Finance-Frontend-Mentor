@@ -14,7 +14,7 @@ import { environment } from "../../environments/environment.development";
 })
 export class AuthService {
    private firebaseConfig = {
-    apiKey: "AIzaSyBEvzunJv1JJaixSFmvxpPxj6LU",
+    apiKey: environment.firebaseAPIKey,
     authDomain: "finance-fe-mentor.firebaseapp.com",
     projectId: "finance-fe-mentor",
     storageBucket: "finance-fe-mentor.firebasestorage.app",
@@ -149,6 +149,8 @@ export class AuthService {
     }
 
     loginUser(email: string, password: string) {
+        console.log("this.auth.apikey")
+        console.log(this.auth.config)
         signInWithEmailAndPassword(this.auth, email, password)
         .then(user => {
             this.user.update(() => <any>user.user)
