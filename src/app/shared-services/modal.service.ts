@@ -61,7 +61,7 @@ export class ModalService {
     modalOn = signal<boolean>(false)
     modals: ModalConfig[] = [
         {
-        title: 'Add New Pot', 
+        title: () => 'Add New Pot', 
         description: 'Create a pot to set savings targets. These can help keep you on track as you save for special purchases.',
         prompts: [
             {
@@ -98,7 +98,7 @@ export class ModalService {
             key: 'pot-add'
         },
         {
-            title: 'Edit Pot', 
+            title: (item) => 'Edit ' + (item ? item.category : ''), 
             description: 'If your saving targets change, feel free to update your pots.',
             prompts: [
                 {
@@ -140,7 +140,7 @@ export class ModalService {
             key: 'pot-edit'
             },
             {
-                title: 'Deposit in',
+                title: (item) => 'Deposit in ' + (item ? item.category : '') ,
                 description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus  hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.',
                 key: 'pot-deposit',
                 prompts: [
@@ -155,15 +155,13 @@ export class ModalService {
                     {
                         title: 'Confirm Addition',
                         task: (index: number, form: FormGroup) => {
-                            console.log("form.value")
-                            console.log(form.value)
                          this.potService.deposit(index, form.value.deposit)   
                         }
                     }
                 ]
             },
             {
-                title: 'Withdraw in',
+                title: (item) => 'Withdraw in ' + (item ? item.category : ''),
                 description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus  hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.',
                 key: 'pot-withdraw',
                 prompts: [
@@ -184,7 +182,7 @@ export class ModalService {
                 ]
             },
             {
-                title: `Delete`, 
+                title: (item) => `Delete ${(item ? item.category : '')}`, 
                 description: 'Are you sure you want to delete this pot? This action cannot be reversed, and all the data inside it will be removed forever.',
                 prompts: [
                   
@@ -206,7 +204,7 @@ export class ModalService {
             key: 'pot-delete'
             },
             {
-                title: 'Add New Budget', 
+                title: () => 'Add New Budget', 
                 description: 'Choose a category to set a spending budget. These categories can help you monitor spending.',
                 prompts: [
                     {
@@ -215,7 +213,7 @@ export class ModalService {
                         formKey: 'category',
                         validation: [],
                         values: this.budgetService.getBudgetDetails()().map((detail) => {
-                            return {code: detail.theme.title, title: detail.category.title }
+                            return {code: detail.theme.title, title: detail.category}
                         })
                     },
                     {
@@ -250,7 +248,7 @@ export class ModalService {
             key: 'budget-add'
                 },
                 {
-                    title: 'Edit', 
+                    title: (item) => 'Edit ' + (item ? item.category : ''), 
                     description: 'As your budgets change, feel free to update your spending limits.',
                     prompts: [
                         {
@@ -265,7 +263,7 @@ export class ModalService {
                                 return null;
                             }],
                             values: this.budgetService.getBudgetDetails()().map((detail) => {
-                                return {code: detail.theme.title, title: detail.category.title }
+                                return {code: detail.theme.title, title: detail.category }
                             })
                         },
                         {
@@ -300,7 +298,7 @@ export class ModalService {
             key: 'budget-edit'
                     },
                     {
-                        title: `Delete`, 
+                        title: (item) => `Delete ` + (item ? item.category : ''), 
                         description: 'Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever.',
                         prompts: [
                           
@@ -324,7 +322,7 @@ export class ModalService {
     ]
 
 
-    async getConfig(str: string, index: number | null) {
+    async getConfig(str: string, index: number) {
         this.modalOn.set(true)
         console.log("getConfig Str is")
 
@@ -341,8 +339,9 @@ export class ModalService {
                 else  {
                     console.log("index is")
                     console.log(index)
+                    
                     return {
-                        item: index ? await this.potService.getPot(index) : null,
+                        item: index > -1 ? await this.potService.getPot(index) : null,
                         modal: modal
                     }
                 }

@@ -2,7 +2,7 @@ import { Dropdown } from "./dropdown.interface";
 
 export interface Pot {
     amount: string,
-    category: Dropdown,
+    category: string,
     theme: Dropdown,
     target: string
 }

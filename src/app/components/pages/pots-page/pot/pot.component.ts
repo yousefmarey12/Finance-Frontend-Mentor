@@ -20,7 +20,15 @@ import { ProgressBarComponent } from '../../../util-components/progress-bar/prog
 export class PotComponent implements OnInit {
 
 
-  @Input() pot!: Pot
+  @Input() pot: Pot = {
+    category: 'Testing',
+    amount: '0',
+    target: '3',
+    theme: {
+      title: "Green",
+      code: "#277334"
+    }
+  }
   @Input() index!: string
   amountPercentage: string = '' 
   router = inject(Router)
@@ -34,7 +42,8 @@ export class PotComponent implements OnInit {
        isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
   ngOnInit(): void {
 
-    
+    console.log("pot")
+    console.log(this.pot)
     let fraction = (+this.pot.amount)/(+this.pot.target)
     this.amountPercentage = (fraction * 100).toFixed(2)
     this.items = [

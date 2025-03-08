@@ -24,10 +24,8 @@ import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
-export class ModalComponent implements OnInit, OnDestroy, DoCheck {
-  ngDoCheck(): void {
-    console.log(this.form)
-  }
+export class ModalComponent implements OnInit, OnDestroy {
+ 
 
   error = signal(false)
   data = signal(0)
@@ -48,10 +46,11 @@ export class ModalComponent implements OnInit, OnDestroy, DoCheck {
     this.modalService.modalOn.set(false)
   }
   ngOnInit(): void {
-    console.log()
+
   this.route.data.subscribe(({modal})=> {
     this.modal = modal
-  
+    console.log("this.modal..")
+    console.log(this.modal)
     this.currentIndex = +(this.router.url.match(/\d+/g)?.at(0) || '')
     if (this.modal.modal.key.includes('deposit')) {
       this.isEditPot = true
@@ -74,7 +73,7 @@ this.modal.modal.prompts = this.modal.modal.prompts.map((prompt) => {
     if (this.modal.item) {
       return {
         ...prompt,
-        placeholder: this.modal.item.category
+        placeholder: {title: this.modal.item.category}
       }
     }
     
