@@ -1,6 +1,6 @@
 import { Injectable, Signal, signal } from '@angular/core';
 import { MediaQuery } from '../shared-interfaces/media-query.interface';
-import { Transaction } from '../components/medium/transactions/transactions.component';
+import { Transaction } from '../components/pages/home/transactions/transactions.component';
 import { BudgetDetail } from '../shared-interfaces/budget-detail.interface';
 import { CRUD } from '../shared-interfaces/crud.interface';
 
@@ -8,10 +8,11 @@ import { CRUD } from '../shared-interfaces/crud.interface';
   providedIn: 'root',
 })
 export class BudgetService implements CRUD<BudgetDetail> {
+
     private budgetDetails = signal<BudgetDetail[]>([
         {
             category: {title: 'Entertainment'}, 
-            spentAmount: '25.00', freeAmount: '50.00', colorTheme: {title: '#277C78'},
+            spentAmount: '25.00', freeAmount: '50.00', theme: {title: '#277C78'},
             transactions: [
                 {isCredit: false, person: 'Papa Software', amount: '10.00', date: '16 Aug 2024'},
                 {isCredit: false, person: 'Quebec Services', amount: '5.00', date: '12 Aug 2024'},
@@ -20,7 +21,7 @@ export class BudgetService implements CRUD<BudgetDetail> {
         },
         {
             category: {title: 'Bills'}, 
-            spentAmount: '250.00', freeAmount: '750.00', colorTheme: {title: '#82C9D7'},
+            spentAmount: '250.00', freeAmount: '750.00', theme: {title: '#82C9D7'},
             transactions: [
                 {isCredit: false, person: 'Charlie Electric Company', amount: '100.00', date: '1 Aug 2024'},
                 {isCredit: false, person: 'Foxtrot Waterline', amount: '100.00', date: '1 Aug 2024'},
@@ -29,7 +30,7 @@ export class BudgetService implements CRUD<BudgetDetail> {
         },
         {
             category: {title: 'Dining Out'}, 
-            spentAmount: '67.00', freeAmount: '8.00', colorTheme:{title: '#F2CDAC'},
+            spentAmount: '67.00', freeAmount: '8.00', theme:{title: '#F2CDAC'},
             transactions: [
                 {isCredit: false, person: 'Lima Dining House', amount: '30.00', date: '21 Aug 2024'},
                 {isCredit: false, person: 'Yuna Kim', amount: '21.50', date: '20 Aug 2024'},
@@ -38,7 +39,7 @@ export class BudgetService implements CRUD<BudgetDetail> {
         },
         {
             category: {title: 'Personal Care'}, 
-            spentAmount: '65.00', freeAmount: '35.00', colorTheme: {title: '#626070'},
+            spentAmount: '65.00', freeAmount: '35.00', theme: {title: '#626070'},
             transactions: [
                 {isCredit: false, person: 'Bravo Zen Spa', amount: '25.00', date: '29 Aug 2024'},
                 {isCredit: false, person: 'Sofia Peterson', amount: '15.00', date: '15 Aug 2024'},
@@ -52,6 +53,7 @@ export class BudgetService implements CRUD<BudgetDetail> {
     }
 
     addItem(details: BudgetDetail) {
+        console.log("does add button work?")
         this.budgetDetails.update((val) => {
             val.push(details)
             return val;

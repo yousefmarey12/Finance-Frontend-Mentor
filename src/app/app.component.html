@@ -1,21 +1,7 @@
 
-  <div class="position-relative app-container">
-    
-    <div class="position-relative" [ngClass]="{'layout-desktop': isDesktop()}">
+<div class="app-container">
+    <div class="position-relative" [ngClass]="{'layout-desktop': isDesktop()}" >
         <router-outlet></router-outlet>
-        <app-navigation [ngClass]="{'brightness': modalOn()}"></app-navigation>
+        <app-navigation *ngIf="authService.user() && (!router.url.includes('signup') || !router.url.includes('login'))" [ngClass]="{'brightness': modalOn()}"></app-navigation> 
     </div>
-
-  <!-- <app-pot [pot]="{
-    category: 'Savings',
-    theme: '#277C78',
-    amount: '159.00',
-    target: '2000.00'
-}" class="center"></app-pot> -->
-  <!-- <app-modal *ngIf="!modalOn" (modalOn)="setModalOff($event)" [budgetKeyReference]="'2'"></app-modal> -->
-    <!-- <app-home *ngIf="false"  class="w-100" ></app-home>
-     -->
-  <!-- <app-spending-summary class="center"></app-spending-summary> -->
-    <!-- <app-budget-detail class="center"></app-budget-detail> -->
-
 </div>

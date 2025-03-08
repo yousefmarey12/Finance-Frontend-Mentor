@@ -23,6 +23,8 @@
     --white: #fff
 
 }
+
+
 .brightness {
     background: rgba(0, 0, 0, 0.50);
     filter: brightness(50%);
@@ -32,6 +34,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.eye_icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+.signup {
+    line-height: 150%; /* 21px */
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-skip-ink: none;
+text-decoration-thickness: auto;
+text-underline-offset: auto;
+text-underline-position: from-font;
+}
+
 
 html, body, app-root {
     height: 100%;

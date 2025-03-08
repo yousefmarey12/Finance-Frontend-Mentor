@@ -1,9 +1,0 @@
-<div class="br p-300 account-card" [ngClass]="{'account-card-dark': isDark}">
-    <div class="account-card__icon">
-        <ng-content></ng-content>
-    </div>
-    <div class="account-card__info" >
-        <p class="text-preset-4" >{{subtitle}}</p>
-        <h1 class="text-preset-1 flex {{isDark ? '' : 'color-grey-900'}}" >${{amount | money }}</h1>
-    </div>
-</div>

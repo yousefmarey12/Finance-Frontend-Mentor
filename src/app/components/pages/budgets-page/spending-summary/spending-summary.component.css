@@ -12,10 +12,7 @@
     align-items: center;
     gap: 32px;
 }
-.no-text-wrap {
-    white-space: nowrap;
-    float: left;
-}
+
 
 .inner-container {
     display: flex;

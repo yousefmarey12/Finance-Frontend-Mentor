@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { HoverDirective } from '../../../shared-directives/hover.directive';
@@ -65,16 +65,17 @@ export class DropdownComponent implements ControlValueAccessor, Validator  {
   
   value!: Dropdown
   onChange = (val: any) => {}
-  onTouched = () => {}
+  onTouched = () => null
   onClickItem(value: Dropdown) {
     if (!this.disabled) {
           this.value = value;
           this.placeholder = value
           this.onChange(this.value);
+          this.inputChange.emit(this.value)
     }
 
   }
-
+@Output() inputChange = new EventEmitter<Dropdown>()
   markAsTouched() {
     if (!this.touched) {
       this.onTouched();

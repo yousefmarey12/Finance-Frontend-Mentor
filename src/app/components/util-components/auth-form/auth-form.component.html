@@ -1,0 +1,20 @@
+<form [formGroup]="form" [ngClass]="{'auth_form_container': isDesktop()}" (ngSubmit)="authForm.buttons[0].task(0, form)" >
+    <div   class="auth_form"[ngClass]="{'mx-200 my-300 px-250 py-300': isDesktop()}" [ngStyle]="{'gap': !isDesktop() ? '16px' : '24px', 'width': !isDesktop() ? '100%' : '75%'}">
+
+
+<h1 class="text-preset-1">{{authForm.title}}</h1>
+
+<div *ngFor="let input of authForm.inputs" class="container_control">
+    <label [for]="input.label" class="text-preset-5-bold">{{input.label}}</label>
+    <app-input-field formControlName="{{input.formKey}}" class="" [type]="input.type()"></app-input-field>
+    @if (input.icon) {
+        <span (click)="input.icon?.onClick() || ''" [innerHTML]="(input.icon.svg() | safeHtml)"></span>
+    }
+
+</div>
+
+<app-button>{{authForm.buttons[0].title}}</app-button>
+<p style="cursor: pointer;" *ngIf="authForm.title != 'Login'" class="text-preset-4">Already have an account? <span  class="text-preset-4-bold signup" (click)="navigateTo('/login')">Login</span></p>
+<p style="cursor: pointer;"  *ngIf="authForm.title == 'Login'" class="text-preset-4">Need to create an account? <span  class="text-preset-4-bold signup" (click)="navigateTo('/signup')">Sign Up</span></p>
+</div>
+</form>

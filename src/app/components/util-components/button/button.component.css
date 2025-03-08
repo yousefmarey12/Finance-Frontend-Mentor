@@ -5,6 +5,7 @@
     border-radius: 8px;
     border: none; 
     transition: 500ms;  
+    cursor: pointer;
 }
 
 .btn_primary {
@@ -18,7 +19,7 @@
 }
 
 .btn_tertiary {
-    background-color: var(--white);
+    background-color: transparent;
     color: var(--grey-500);
 }
 
@@ -42,3 +43,4 @@
 .btn_destroy:hover {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--color-red, #C94736);
 }
+

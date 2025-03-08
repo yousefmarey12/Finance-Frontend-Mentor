@@ -1,0 +1,20 @@
+
+.progress {
+    left: 4px;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 4px;
+    height: 75%;
+}
+
+
+
+
+
+
+.progress-container {
+    height: 8px;
+    background: #F8F4F0;
+    border-radius: 4px;
+    position: relative;
+}

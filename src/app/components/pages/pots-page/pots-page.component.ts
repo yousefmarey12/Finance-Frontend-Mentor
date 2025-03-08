@@ -28,7 +28,7 @@ export class PotsPageComponent implements OnInit {
       constructor(private potsService: PotService) {}
       pots: Pot[] = []
       ngOnInit(): void {
-          this.pots = this.potsService.getPotDetails()()
+         this.potsService.getPotDetails()
       }
 
       navigateTo() {

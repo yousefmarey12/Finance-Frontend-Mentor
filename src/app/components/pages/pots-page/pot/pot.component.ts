@@ -1,4 +1,4 @@
-import { Component, computed, inject, Input } from '@angular/core';
+import { Component, computed, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IconDropdownComponent, navigationConfig } from '../../../util-components/icon-dropdown/icon-dropdown.component';
 import { Pot } from '../../../../shared-interfaces/pot.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -7,28 +7,34 @@ import { PotService } from '../../../../shared-services/pot.service';
 import { DisplayMoney } from '../../../../shared-pipes/display-number.pipe';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../util-components/button/button.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProgressBarComponent } from '../../../util-components/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-pot',
   standalone: true,
-  imports: [IconDropdownComponent, DisplayMoney, CommonModule, ButtonComponent],
+  imports: [IconDropdownComponent, DisplayMoney, CommonModule, ButtonComponent, ProgressBarComponent],
   templateUrl: './pot.component.html',
   styleUrl: './pot.component.css'
 })
-export class PotComponent {
+export class PotComponent implements OnInit {
+
+
   @Input() pot!: Pot
   @Input() index!: string
   amountPercentage: string = '' 
+  router = inject(Router)
+  route = inject(ActivatedRoute)
   items: navigationConfig[] = []
   constructor(private potService: PotService) {}
+ 
 #mediaQueryService = inject(MediaQueryService)
        isMobile = toSignal(this.#mediaQueryService.mediaQuery('max', 'md'));
        isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
        isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
   ngOnInit(): void {
 
-    console.log("pot is")
-    console.log(this.pot)
+    
     let fraction = (+this.pot.amount)/(+this.pot.target)
     this.amountPercentage = (fraction * 100).toFixed(2)
     this.items = [
@@ -41,5 +47,13 @@ export class PotComponent {
         path: ('delete/' + this.index)
       }
     ]
+  }
+  navigateTo(isDeposit = true) {
+     
+        this.router.navigate([`${isDeposit ? 'deposit' : 'withdraw'}`, this.index], {
+          relativeTo: this.route
+        })
+    
+    
   }
 }
