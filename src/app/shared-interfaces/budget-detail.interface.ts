@@ -2,7 +2,7 @@ import { Transaction } from "../components/pages/home/transactions/transactions.
 import { Dropdown } from "./dropdown.interface";
 
 export interface BudgetDetail {
-    category: Dropdown,
+    category: string,
     freeAmount: string,
     spentAmount: string,
     transactions: Transaction[],

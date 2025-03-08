@@ -23,7 +23,7 @@ export class BudgetDetailComponent implements OnInit {
   @Input() colorTheme: Dropdown = {title: ''}
   @Input() freeAmount: string = ''
   @Input() spentAmount: string = ''
-  @Input() title: Dropdown = {title: ''}
+  @Input() title: string = ''
   @Input() transactions: Transaction[] = []
   items: navigationConfig[] = []
   @Input() index!: string

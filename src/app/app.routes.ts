@@ -6,7 +6,7 @@ import { PotsPageComponent } from './components/pages/pots-page/pots-page.compon
 import { TransactionsPageComponent } from './components/pages/transactions-page/transactions-page.component';
 import { ModalComponent } from './components/util-components/modal/modal.component';
 import { ModalService } from './shared-services/modal.service';
-import { inject } from '@angular/core';
+import { inject, InjectionToken } from '@angular/core';
 import { ModalConfig } from './shared-interfaces/modal-config.interface';
 import { BudgetDetail } from './shared-interfaces/budget-detail.interface';
 import { Pot } from './shared-interfaces/pot.interface';
@@ -14,11 +14,17 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { AuthService } from './shared-services/auth.service';
 import { AuthPageComponent } from './components/pages/auth-page/auth-page.component';
 import { AuthForm } from './shared-interfaces/auth-form.interface';
+import { PotService } from './shared-services/pot.service';
+
+export const potsResolver: ResolveFn<Pot[]> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    let potsService = inject(PotService)
+    let pots = await potsService.getPotDetails()
+    return pots
+}
 
 export const modalResolver: ResolveFn<{modal: ModalConfig, item: BudgetDetail | Pot | null}> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     let modalService = inject(ModalService)
-    console.log("state.url")
-    console.log("hellllooooo")
+
     console.log(state.url)
     let number = state.url.match(/\d+/g)
     console.log("state.url.includes('pot')")
@@ -29,7 +35,7 @@ export const modalResolver: ResolveFn<{modal: ModalConfig, item: BudgetDetail | 
     if (state.url.includes('pot')) {
         if (state.url.includes('new')) {
             console.log("ayoooo does this even run?")
-            result2 = await modalService.getConfig('pot-add', null)
+            result2 = await modalService.getConfig('pot-add', -1)
         }
         else if (state.url.includes('edit') && number) {
             result2 = await modalService.getConfig('pot-edit', +number[0])
@@ -41,10 +47,13 @@ export const modalResolver: ResolveFn<{modal: ModalConfig, item: BudgetDetail | 
             result2 = await modalService.getConfig('pot-deposit', +number[0])
         }
         else {
-            if (number ) {
+            if (number) {
                 result2 = await modalService.getConfig('pot-withdraw', +number[0])
             }
-            result2 = await modalService.getConfig('budget-add', null)
+            else {
+                result2 = await modalService.getConfig('budget-add', -1)
+
+            }
         }
     }
     else {
@@ -52,13 +61,16 @@ export const modalResolver: ResolveFn<{modal: ModalConfig, item: BudgetDetail | 
             result2 = await modalService.getConfig('budget-edit', +number[0])
         }
         else if (state.url.includes('new')) {
-            result2 = await modalService.getConfig('budget-add', null)
+            result2 = await modalService.getConfig('budget-add', -1)
         }
         else {
             if (number) {
                 result2 = await modalService.getConfig('budget-delete', +number[0])
             }
-            result2 = await modalService.getConfig('budget-add', null)
+            else {
+                result2 = await modalService.getConfig('budget-add', -1)
+
+            }
         }
     }
     return result2
@@ -133,7 +145,8 @@ export const routes: Route[] = [
 
     {
         path: 'pots',
-     component: PotsPageComponent,
+     component: PotsPageComponent,  
+     resolve: {data: potsResolver},
         children: [
             {
                 path: 'new',

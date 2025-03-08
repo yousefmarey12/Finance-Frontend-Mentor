@@ -24,12 +24,21 @@ export class PotsPageComponent implements OnInit {
     isDesktop = toSignal(this.#mediaQueryService.mediaQuery('min', 'lg'));
     isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
     modalService = inject(ModalService)
+
     modalOn = this.modalService.modalOn
       constructor(private potsService: PotService) {}
       pots: Pot[] = []
       ngOnInit(): void {
-         this.potsService.getPotDetails()
+       this.route.data.subscribe(({data}) => {
+          this.pots = data
+       })
+
+       this.potsService.potsChanged.subscribe((pots) => {
+        this.pots = pots
+       })
       }
+    
+
 
       navigateTo() {
         this.router.navigate(['new'], {

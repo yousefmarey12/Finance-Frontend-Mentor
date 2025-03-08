@@ -78,52 +78,47 @@ export class PotService implements CRUD<Pot> {
         potsArr: Pot[] = [
 
         ]
-        pots = new BehaviorSubject<Pot[]>( [
-        {
-            category: {title: 'Savings' },
-            theme: {title: '#277C78'},
-            amount: '159.00',
-            target: '2000.00'
-        },
-        {
-            category: {title: 'Concert Ticket' },
-            theme: {title: '#626070'},
-            amount: '110.00',
-            target: '150.00'
-        },
-        {
-            category:  {title: 'Gift' },
-            theme: {title: '#82C9D7'},
-            amount: '40.00',
-            target: '60.00'
-        },
-        {
-            category: {title: 'New Laptop' },
-            theme: {title: '#F2CDAC'},
-            amount: '10.00',
-            target: '1000.00'
-        },
-        {
-            category: {title: 'Holiday' },
-            theme: {title: '#826CB0'},
-            amount: '531.00',
-            target: '1440.00'
-        },
-    ])
-async getPotDetails() {
-        onValue(ref(this.database, `users/${this.authService.uid()}`), (snapshot) => {
-        if (snapshot.exists()) {
-            console.log(snapshot.exists())
-            console.log(snapshot.val())
-            this.pots.next(snapshot.val())
-           }
-       })
-    
-}
+        pots: Pot[] =  [
+        
+    ]
 
+    potsChanged = new Subject<Pot[]>()
+ async getPotDetails() {
+        return get(ref(this.database, `users/${this.authService.uid()}/pots`)).then((val) => {
+            this.pots = val.val()|| []
+            console.log("pots in pot.service")
+            console.log(val.val())
+            return this.pots 
+        })
+
+}
+/*
+    We need a system for CRUD Pots & CRUD Budgets
+
+    A pot is composed of the following:
+        amount => string
+        category => string
+        theme => an object with the display value and actual value (dropdown)
+        target => string
+    The ultimate source of data is the firebase realtime database with 2 keys.
+        {
+            users:
+                    {
+                        id:
+                            {
+                                pots: {}
+                                budgets: {}
+                            }
+                    }
+        }
+        Now of course any CRUD to the database is async. We will use either observables or promises.
+        Getting (Reading) should be a subscription because we always want to get the current state of the database
+        The others will be promise as in it will just be a one time thing and done, what we will do after the promise is get the current state of the 
+        database and then set it locally to the user.
+*/
 
     async getPot(index: number) {
-        let pot = await get(ref(this.database, 'users/' + this.authService.uid() + '/' + index));
+        let pot = await get(ref(this.database, 'users/' + this.authService.uid() + '/pots/' + index));
 
         if (pot) {
             return pot.val()
@@ -133,33 +128,37 @@ async getPotDetails() {
         }
     }
 
-   
-        addItem(details: any) {
-         
-        //    this.pots.next()
-            
-        
-            if (this.authService.uid()) {
-            this.pots.subscribe((val) => {
-                set(ref(this.database, 'users/' + this.authService.uid()), val);
+    
 
-            })
-        }
+   
+       async addItem(details: any) {
+            await this.getPotDetails()
+            let pot: Pot = {
+                category: details.name,
+                amount: '0',
+                ...details,
+            }
+            this.editItem(this.pots.length, pot)
         }
 
        
 
         async editItem(index: number, newDetails: Pot) {
-            return set(ref(this.database, 'users/' + this.authService.uid()  + '/' +index.toString()), newDetails);
-        
+            await this.getPotDetails()
+            if (this.authService.uid()) {
+             set(ref(this.database, 'users/' + this.authService.uid()  + '/pots/' +index.toString()), newDetails)
+             .then(async () => {
+                await this.getPotDetails()
+                this.potsChanged.next(this.pots)
+             })
+             
+            }
         }
 
         deposit(index: number, amount: number) {
             try {
                this.getPot(index).then((val) => {
-                console.log("val")
-                console.log(val.amount)
-                console.log(amount)
+         
                 val.amount = this.addDecimals(val.amount.toString(), amount.toString())
                 console.log(val)
                 this.editItem(index, val)
@@ -203,14 +202,10 @@ async getPotDetails() {
            // then, we have a reference to the array after the deleted index, and we basically reset it but with the index before it
            // we do the same thing until the end of the array
            await this.getPotDetails()
-           remove(ref(this.database, 'users/' + this.authService.uid() + '/' + index.toString()))
-           this.pots.subscribe((val) => {
-            while(index != val.length -1) {
-                this.editItem(index, val[index + 1])
-                index++
-           }  
-           })
+           remove(ref(this.database, 'users/' + this.authService.uid() + '/pots/' + index.toString()))
            
-           
+           for (let i = index; i < index - 1; i++) {
+               this.editItem(index, this.pots[index + 1])
+           }
         }
 }
