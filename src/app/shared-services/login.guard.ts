@@ -15,7 +15,7 @@ export class SignInGuard implements CanActivate {
             return true;
         })
         .catch(e => {
-            console.log("Error", e)
+            console.error("Error", e)
             return false;
         })
     }
