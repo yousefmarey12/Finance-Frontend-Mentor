@@ -49,8 +49,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   this.route.data.subscribe(({modal})=> {
     this.modal = modal
-    console.log("this.modal..")
-    console.log(this.modal)
+ 
     this.currentIndex = +(this.router.url.match(/\d+/g)?.at(0) || '')
     if (this.modal.modal.key.includes('deposit')) {
       this.isEditPot = true
@@ -105,19 +104,14 @@ this.modal.modal.prompts = this.modal.modal.prompts.map((prompt) => {
 
 let formParams = Object.create({})
 for (let i = 0; i < this.modal.modal.prompts.length; i++) {
-    console.log("this.modal.modal is ")
-    console.log(this.modal)
+   
     let key = this.modal.modal.prompts[i].formKey
     let validations: ((control: AbstractControl) => any)[] = []
     if (this.modal.modal.prompts[i].validation.length > 0) {
 
   
      this.modal.modal.prompts[i].validation.forEach((validators => {
-      console.log("validators")
-      console.log(validators)
-      console.log("key is")
-      console.log(key)
-      // console.log(this.modal.modal.prompts[i])
+     
       if (this.modal.item && this.modal.item.amount) {
         if (this.modal.item.target && key == 'deposit') {
           validations.push(validators(0, +this.modal.item.target))
@@ -129,8 +123,7 @@ for (let i = 0; i < this.modal.modal.prompts.length; i++) {
         
       }
      if (key == 'spend' || key == 'category' || key == 'target') {
-        console.log("key")
-        console.log(key)
+    
         
         validations.push(validators(0, 0))
       }
@@ -138,18 +131,13 @@ for (let i = 0; i < this.modal.modal.prompts.length; i++) {
 
     }))
   }
-    console.log("my_key")
-    console.log(key)
-    console.log(validations)
+
     formParams[key] = new FormControl(null, [Validators.required, ...validations])
-    console.log("formParams")
-    console.log(formParams)
+  
     
 }
     this.form = new FormGroup(formParams)  
-    console.log("form.dirty" + this.form.dirty)  
   })
-  console.log(this.form)
 
 }
 
@@ -204,32 +192,9 @@ for (let i = 0; i < this.modal.modal.prompts.length; i++) {
 return ""
   }
 
-  
-  // calculateAmount() {
-  //   console.log("form.dirtyyy" + this.form.dirty)
-  //   if (this.modal.item.target && this.modal.item.amount) {
-  //     if ((+this.form.value + +this.modal.item.amount) >= (+this.modal.item.target || 0)) {
-    
-  //       return +this.modal.item.target
-  //   }
-  //   }
  
-  //   if (this.isDeposit && this.modal.item.amount) {
-  //     return +this.modal.item.amount + +this.form.value.deposit
-  //   }
-  //   else {
-  //     if (this.modal.item.amount) {
-  //       return +this.modal.item.amount - +this.form.value.withdraw
-
-  //     }
-  //   }
-  //   return 0
-  // }
-
 
   onExit() {
-    console.log("Form.valid")
-    console.log(this.form.valid)
 
     if (this.router.url.includes('new')) {
       this.router.navigate(['..'], {

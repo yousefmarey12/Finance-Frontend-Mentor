@@ -31,16 +31,11 @@ export const potsResolver: ResolveFn<Pot[]> = async (route: ActivatedRouteSnapsh
 export const modalResolver: ResolveFn<{modal: ModalConfig, item: BudgetDetail | Pot | null}> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     let modalService = inject(ModalService)
 
-    console.log(state.url)
     let number = state.url.match(/\d+/g)
-    console.log("state.url.includes('pot')")
-    console.log(state.url.includes('pot'))
-    console.log(state.url.includes('new'))
-    console.log(state.url.includes('pot'))
+    
     let result2;
     if (state.url.includes('pot')) {
         if (state.url.includes('new')) {
-            console.log("ayoooo does this even run?")
             result2 = await modalService.getConfig('pot-add', -1)
         }
         else if (state.url.includes('edit') && number) {
@@ -88,7 +83,6 @@ const canActivate: CanActivateFn = (  route: ActivatedRouteSnapshot, state: Rout
     let modalOn = inject(ModalService).modalOn
     let authService = inject(AuthService)
     let router = inject(Router)
-    console.log(modalOn())
     if (modalOn() || !authService.user()) {
         return router.createUrlTree(['/signup'])
     }

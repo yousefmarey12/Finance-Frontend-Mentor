@@ -28,8 +28,7 @@ authService = inject(AuthService)
     }
 
     async addItem(form: any) {
-                console.log("form budget")
-                console.log(form)
+
                    await this.getBudgetDetails()
                    let budget: BudgetDetail = {
                        freeAmount: '0',
