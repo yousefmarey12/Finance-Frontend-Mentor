@@ -6,8 +6,7 @@ import { AuthForm } from "../shared-interfaces/auth-form.interface";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { MediaQueryService } from "./media-query.service";
 import { Router } from "@angular/router";
-import { environment } from "../../../.vscode/environments/environment.development";
-
+import { environment } from "../environments/environment";
 @Injectable({
     providedIn: 'root'
 })
