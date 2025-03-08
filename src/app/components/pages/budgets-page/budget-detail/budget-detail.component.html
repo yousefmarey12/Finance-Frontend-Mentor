@@ -17,8 +17,8 @@
             </div>
         </div>
         <div class="space-between w-100">
-            <app-mini-card [color]="colorTheme.title" [title]="'Spent'" [amount]="spentAmount | money"></app-mini-card>
-            <app-mini-card  [color]="'#F8F4F0'" [title]="'Free'" [amount]="freeAmount | money"></app-mini-card>
+            <app-mini-card [color]="colorTheme.title" [title]="'Spent'" [amount]="(spentAmount)"></app-mini-card>
+            <app-mini-card  [color]="'#F8F4F0'" [title]="'Free'" [amount]="(freeAmount)"></app-mini-card>
         </div>
     </div>
     <div class="spending br p-200 w-100 text-align-center">

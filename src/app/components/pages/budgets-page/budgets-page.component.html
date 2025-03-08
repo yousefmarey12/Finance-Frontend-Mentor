@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="{'brightness mx-0 my-0 px-200 py-300': modalOn(), 'mx-200 my-300 px-0 py-0': !modalOn()}">
+<div class="container h-100" [ngClass]="{'brightness mx-0 my-0 px-200 py-300': modalOn(), 'mx-200 my-300 px-0 py-0': !modalOn()}">
     <div class="flex w-100 ">
         <p class="text-preset-1">Budgets</p>
         <app-button  (click)="navigateToNew()">+ Add New Budget</app-button>

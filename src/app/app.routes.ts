@@ -15,7 +15,13 @@ import { AuthService } from './shared-services/auth.service';
 import { AuthPageComponent } from './components/pages/auth-page/auth-page.component';
 import { AuthForm } from './shared-interfaces/auth-form.interface';
 import { PotService } from './shared-services/pot.service';
+import { BudgetService } from './shared-services/budget.service';
 
+export const budgetsResolver: ResolveFn<BudgetDetail[]> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    let budgetsService = inject(BudgetService)
+    let budgets = await budgetsService.getBudgetDetails()
+    return budgets
+}
 export const potsResolver: ResolveFn<Pot[]> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     let potsService = inject(PotService)
     let pots = await potsService.getPotDetails()
@@ -123,6 +129,7 @@ export const routes: Route[] = [
     {
         path: 'budgets',
         component: BudgetsPageComponent,
+        resolve: {data: budgetsResolver},
         children: [
             {
                 path: 'new',

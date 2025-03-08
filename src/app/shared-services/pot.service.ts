@@ -22,7 +22,7 @@ export class PotService implements CRUD<Pot> {
         let [,int, dot1, decimal] = str.match(regex) || []
         return [int, decimal]
     }
-    refDb = ref(this.database)
+
 
     private addDecimals = (str1: string, str2: string) => {
         let [int1, decimal1] = this.getNumbers(str1)
