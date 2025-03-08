@@ -35,7 +35,7 @@ export class BudgetDetailComponent implements OnInit {
        isTablet  = computed(() => (!this.isMobile() && !this.isDesktop()))
   ngOnInit(): void {
   this.maximum = ((+this.spentAmount) + (+this.freeAmount)).toString()
-  this.amountPercentage = (((+this.freeAmount)/(+this.maximum)) * 100).toString()
+  this.amountPercentage = (((+this.spentAmount)/(+this.maximum)) * 100).toString()
   this.items  = [
     {
       title: 'Edit Budget',

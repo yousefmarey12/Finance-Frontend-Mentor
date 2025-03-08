@@ -212,7 +212,7 @@ export class ModalService {
                         title: 'Budget Category',
                         formKey: 'category',
                         validation: [],
-                        values: this.budgetService.getBudgetDetails()().map((detail) => {
+                        values: this.budgetService.budgets.map((detail) => {
                             return {code: detail.theme.title, title: detail.category}
                         })
                     },
@@ -262,7 +262,7 @@ export class ModalService {
                                 }
                                 return null;
                             }],
-                            values: this.budgetService.getBudgetDetails()().map((detail) => {
+                            values: this.budgetService.budgets.map((detail) => {
                                 return {code: detail.theme.title, title: detail.category }
                             })
                         },
@@ -330,9 +330,9 @@ export class ModalService {
         for (let modal of this.modals) {
             if (str == modal.key ) {
 
-                if (modal.key.includes('budget') && this.router.url.match(/\d+/g)?.at(0)) {
+                if (modal.key.includes('budget')) {
                     return {
-                        item: index ? this.budgetService.getBudget(index) : null,
+                        item: index > -1 ? await this.budgetService.getBudget(index) : null,
                         modal: modal
                     }
                 }

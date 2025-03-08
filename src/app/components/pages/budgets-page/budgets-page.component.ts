@@ -35,10 +35,15 @@ export class BudgetsPageComponent implements OnInit {
       modalService = inject(ModalService)
       modalOn = this.modalService.modalOn
   constructor(private budgetDetailService: BudgetService) {
-    effect(() => {
-      this.budgetDetails = this.budgetDetailService.getBudgetDetails()()
-    })
+ 
   }
   ngOnInit(): void {
+    this.route.data.subscribe(({data}) => {
+      this.budgetDetails = data
+    })
+    this.budgetDetailService.budgetsChanged.subscribe((budgets) => {
+      this.budgetDetails = budgets
+     })
+
      }
 }
