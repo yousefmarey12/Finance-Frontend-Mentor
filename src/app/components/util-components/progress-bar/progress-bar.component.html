@@ -1,0 +1,8 @@
+<div class="w-100 progress-container p-50 h-100 position-relative">
+    <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': theme1}">
+        <!-- Calculate width -->
+    </div>
+    <div class="position-absolute progress" [ngStyle]="{'left': isDeposit ? amountPercentage + '%' : calculatedAmount + '%', 'width': variableAmount + '%', 'background': theme2, 'border-radius': '2px', 'transform': !isDeposit  ? 'translateX(-100%) translateY(-3px)' : '' }">
+
+    </div>
+</div>

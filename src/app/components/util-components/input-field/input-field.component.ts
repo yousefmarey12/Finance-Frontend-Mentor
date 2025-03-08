@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, Validator, AbstractControl, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 export interface InputType {
   basic: boolean,
@@ -42,18 +42,24 @@ export class InputFieldComponent implements ControlValueAccessor, Validator {
         this.disabled = isDisabled;
     }
     validate(control: AbstractControl): ValidationErrors | null {
+      if (this.type == 'number') {
         if (isNaN(control.value)) {
           return {notNumber: "Not a number"}
         }
-        return null;
+       
+      }
+      return null;
     }
     touched: boolean = false
   disabled: boolean = false
   active: boolean = false
-  
+  @Output() inputChange = new EventEmitter<string>()
   value: string = ''
-  onChange = (val: any) => {}
+  onChange = (val: any) => {
+    this.inputChange.emit(val)
+  }
   onTouched = () => {}
+    @Input() type: string = 'text'
     @Input() inputType: InputType = {
       basic: true,
       withIcon: false,

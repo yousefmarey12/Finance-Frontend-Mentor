@@ -14,6 +14,9 @@ export class ButtonComponent {
     primary: true,
     secondary: false,
     tertiary: false,
-    destroy: false
+    destroy: false,
   }
+
+  @Input() type = 'submit'
+  @Input() disabled = false
 }

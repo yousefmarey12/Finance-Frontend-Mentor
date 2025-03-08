@@ -1,4 +1,4 @@
-import { Transaction } from "../components/medium/transactions/transactions.component";
+import { Transaction } from "../components/pages/home/transactions/transactions.component";
 import { Dropdown } from "./dropdown.interface";
 
 export interface BudgetDetail {
@@ -6,5 +6,7 @@ export interface BudgetDetail {
     freeAmount: string,
     spentAmount: string,
     transactions: Transaction[],
-    colorTheme: Dropdown
+    theme: Dropdown,
+    target?: string,
+    amount?: string
 }

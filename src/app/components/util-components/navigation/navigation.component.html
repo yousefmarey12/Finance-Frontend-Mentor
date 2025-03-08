@@ -11,7 +11,12 @@
     </svg>
    
   </div>
-<div [ngStyle]="{'justify-content': isDesktop() && isShown() ? 'flex-start' : 'center'}"  [ngClass]="{'px-500': isTablet(), 'container-desktop w-100 h-100': isDesktop(), 'coordinates-tablet pt-100 container position-fixed': isMobile() || isTablet(), 'px-200': isMobile()}">
+  <div style="text-align: center" class="logo px-400 py-500" *ngIf="isDesktop() && !isShown()">
+    <svg  xmlns="http://www.w3.org/2000/svg" width="14" height="22" viewBox="0 0 14 22" fill="none">
+      <path d="M8.95201 21.44H2.93601V10.24H0.76001V5.312H3.06401C3.70401 2.272 6.68001 0 11.96 0H13.24V4.288H11C9.33601 4.288 8.53601 4.448 8.56801 5.312H13.24V10.24H8.95201V21.44Z" fill="white"/>
+    </svg>
+  </div>
+<div [ngStyle]="{'align-items': 'flex-start'}"  [ngClass]="{'px-500': isTablet(), 'container-desktop w-100 h-100': isDesktop(), 'coordinates-tablet pt-100 container position-fixed': isMobile() || isTablet(), 'px-200': isMobile()}">
 
      <app-navigation-btn [svgContent]="navigationIcons[i]" [isShown]="isShown" (click)="navigateTo(btn.path)"   [isActive]="btn.isActive" *ngFor="let btn of navigationBtns(); index as i"  [ngClass]="{'active': btn.isActive, 'active-tablet': btn.isActive && isTablet(), 'active-desktop': btn.isActive && isDesktop(), 'active-mobile': btn.isActive && isMobile(), 'py-200 px-400 w-100': isDesktop(), 'py-100 px-150 ': isMobile()}" [btnTitle]="btn.title">
     </app-navigation-btn>

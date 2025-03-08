@@ -24,6 +24,8 @@
     color: var(--grey-900);
 }
 
+
+
 .active-mobile {
     border-radius: 8px 8px 0 0;
     background-color: var(--beige-100);
@@ -43,7 +45,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    
+    min-height: 100vh;
 }
 
 .active-tablet path {

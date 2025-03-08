@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, computed, DoCheck, EventEmitter, inject, Input, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms'
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { InputFieldComponent } from '../input-field/input-field.component';
@@ -13,141 +13,254 @@ import { ModalService } from '../../../shared-services/modal.service';
 import { PotService } from '../../../shared-services/pot.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pot } from '../../../shared-interfaces/pot.interface';
+import { Button, ModalConfig } from '../../../shared-interfaces/modal-config.interface';
+import { DisplayMoney } from '../../../shared-pipes/display-number.pipe';
+import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 
-
-export type Modal =  "Add" | "Edit" | "Delete"
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DropdownComponent, InputFieldComponent, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, DropdownComponent, InputFieldComponent, ButtonComponent, DisplayMoney, ProgressBarComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class ModalComponent implements OnInit, OnDestroy, DoCheck {
+  ngDoCheck(): void {
+    console.log(this.form)
+  }
+
+  error = signal(false)
+  data = signal(0)
   router = inject(Router)
+  
   route = inject(ActivatedRoute)
   modalService = inject(ModalService)
-  service!: BudgetService | PotService
-  budget!: BudgetDetail
-  pot!: Pot
+  isString = isString
+  isDeposit: boolean = true
+  isEditPot: boolean = false
   form!: FormGroup
-  type!: Modal
-  constructor(private budgetDetailService: BudgetService, private potsService: PotService) {}
+  modal!: {
+    modal: ModalConfig
+    item: BudgetDetail | Pot | null 
+  }
+  currentIndex!: number
   ngOnDestroy(): void {
     this.modalService.modalOn.set(false)
   }
   ngOnInit(): void {
-    console.log("budget key reference")
-    console.log(this.budgetKeyReference)
-    this.modalService.modalOn.set(true)
-    if (this.router.url.includes('edit')) {
-      this.type = 'Edit'
-      let matches =  this.router.url.match(/(\d+)$/)
-      if (matches) {
-        this.budgetKeyReference = matches[0]
-      }
+    console.log()
+  this.route.data.subscribe(({modal})=> {
+    this.modal = modal
+  
+    this.currentIndex = +(this.router.url.match(/\d+/g)?.at(0) || '')
+    if (this.modal.modal.key.includes('deposit')) {
+      this.isEditPot = true
+      this.isDeposit = true
+    }
+    else if (this.modal.modal.key.includes('withdraw')) {
+      this.isEditPot = true
+      this.isDeposit = false
     }
     else {
-      if (this.router.url.includes('new')) {
-        this.type = 'Add'
-      }
-      else {
-        this.type = 'Delete'
+      this.isEditPot = false
+    }
+    
+this.modal.modal.prompts = this.modal.modal.prompts.map((prompt) => {
+ if (this.currentIndex) {
+
+
+  if (prompt.formKey == 'category' || prompt.formKey == 'name') {
+   
+    if (this.modal.item) {
+      return {
+        ...prompt,
+        placeholder: this.modal.item.category
       }
     }
-    console.log("budget key reference")
-    console.log(this.budgetKeyReference)
-    this.service = this.router.url.includes('pots') ? this.potsService : this.budgetDetailService
-    this.pot = this.potsService.getPot(+this.budgetKeyReference)
-    console.log("yo my fav pot is")
-    console.log(this.pot)
-    this.budget = this.budgetDetailService.getBudget(+this.budgetKeyReference)
-   if (this.serviceStr == 'budgets') {
-    this.form = new FormGroup({
-      category: new FormControl(null, [Validators.required]),
-      maximum: new FormControl(null, [Validators.required, validateNum]),
-      theme: new FormControl(null, [Validators.required])
-   }) 
-   } else {
-   this.form = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      target: new FormControl(null, [Validators.required, validateNum]),
-      theme: new FormControl(null, [Validators.required]),
-  })
-   } 
+    
   }
-  budgetKeyReference: string = this.router.url.split('/')[3]
-  getCurrentCategory() {
-      if (this.serviceStr == 'budgets') {
-        let budget = this.budgetDetailService.getBudget(+this.budgetKeyReference)
-        return {
-          title: budget.category.title,
-          code: '',
-          alreadyUsed: false
+  if (prompt.formKey == 'theme') {
+    return {
+      ...prompt,
+      placeholder: this.modalService.colors.filter((color: Dropdown) => {
+        if (this.modal.item) {
+          if (this.modal.item.theme.title == color.code) {
+            return true
+          }
         }
-      }
-      console.log("helllooooo")
-      let pot = this.potsService.getPot(+this.budgetKeyReference)
-      console.log(pot)
-      return {
-        title: pot.category.title,
-        code: '',
-        alreadyUsed: false
-      }
-      
+        
+      return false;
+      }).map((val) => {
+        return {
+          title: val.title,
+          code: val.code
+        }
+      })[0]
+    }
   }
-  serviceStr: string = this.router.url.includes('pots') ? 'pots' : 'budgets'
-  categories: Dropdown[] = [
-    {title: "Entertainment", code: '', alreadyUsed: false},
-    {title: "Bills", code: '', alreadyUsed: false},
-    {title: "Groceries", code: '', alreadyUsed: false},
-    {title: "Dining out", code: '', alreadyUsed: false},
-    {title: "Transportation", code: '', alreadyUsed: false},
-    {title: "Education", code: '', alreadyUsed: false},
-    {title: "Lifestyle", code: '', alreadyUsed: false},
-    {title: "Shopping", code: '', alreadyUsed: false},
-    {title: "General", code: '', alreadyUsed: false},
-  ]
+}
+  return prompt
+})
 
-  colors: Dropdown[] = [
-    {title: "Green", code: '#277C78', alreadyUsed: true},
-    {title: "Yellow", code: '#F2CDAC', alreadyUsed: true},
-    {title: "Cyan", code: '#82C9D7', alreadyUsed: true},
-    {title: "Navy", code: '#626070', alreadyUsed: true},
-    {title: "Red", code: '#C94736', alreadyUsed: false},
-    {title: "Purple", code: '#826CB0', alreadyUsed: false},
-    {title: "Turquoise", code: '#597C7C', alreadyUsed: false},
-    {title: "Brown", code: '#93674F', alreadyUsed: false},
-    {title: "Magenta", code: '#934F6F', alreadyUsed: false},
-    {title: "Blue", code: '#3F82B2', alreadyUsed: false},
-    {title: "Grey", code: '#97A0AC', alreadyUsed: false},
-    {title: "Army", code: '#7F9161', alreadyUsed: false},
-    {title: "Pink", code: '#AF81BA', alreadyUsed: false},
-    {title: "Pink", code: '#BE6C49', alreadyUsed: false}
-  ]
+
+
+let formParams = Object.create({})
+for (let i = 0; i < this.modal.modal.prompts.length; i++) {
+    console.log("this.modal.modal is ")
+    console.log(this.modal)
+    let key = this.modal.modal.prompts[i].formKey
+    let validations: ((control: AbstractControl) => any)[] = []
+    if (this.modal.modal.prompts[i].validation.length > 0) {
+
+  
+     this.modal.modal.prompts[i].validation.forEach((validators => {
+      console.log("validators")
+      console.log(validators)
+      console.log("key is")
+      console.log(key)
+      // console.log(this.modal.modal.prompts[i])
+      if (this.modal.item && this.modal.item.amount) {
+        if (this.modal.item.target && key == 'deposit') {
+          validations.push(validators(0, +this.modal.item.target))
+        }
+        else if (this.modal.item.target && key == 'withdraw') {
+          
+          validations.push(validators(0, +this.modal.item.amount))
+        }
+        
+      }
+     if (key == 'spend' || key == 'category' || key == 'target') {
+        console.log("key")
+        console.log(key)
+        
+        validations.push(validators(0, 0))
+      }
+     
+
+    }))
+  }
+    console.log("my_key")
+    console.log(key)
+    console.log(validations)
+    formParams[key] = new FormControl(null, [Validators.required, ...validations])
+    console.log("formParams")
+    console.log(formParams)
+    
+}
+    this.form = new FormGroup(formParams)  
+    console.log("form.dirty" + this.form.dirty)  
+  })
+  console.log(this.form)
+
+}
+
+
+  calculateAmount() {
+    if (this.modal.item) {
+
+   
+    if (this.form.value.deposit == '' || this.form.value.withdraw == '' && this.modal.item.amount) {
+      return '$'+ (this.modal.item.amount )
+    }
+  if (this.form.touched) {
+      if (this.form.valid && this.modal.item.amount && this.modal.item.target) {
+        if (+this.form.value.deposit + +this.modal.item.amount >= +this.modal.item.target) {
+            return this.modal.item.target
+        }
+        else {
+          if (+this.modal.item.amount - +this.form.value.withdraw < 0) {
+            return '0'
+          }
+          else {
+      
+            if (this.form.value.deposit == '' || this.form.value.withdraw == '') {
+              return this.isDeposit ? +this.form.value.deposit : +this.form.value.withdraw 
+            }
+            if (this.isDeposit) {
+              return  isNaN(+this.modal.item.amount + +this.form.value.deposit) ? 'Invalid Amount' : +this.modal.item.amount + +this.form.value.deposit
+            }
+            else {
+              
+              if (isNaN(+this.modal.item.amount - +this.form.value.withdraw)) {
+                return 'Invalid Amount'
+              } 
+              else {
+               return +this.modal.item.amount - +this.form.value.withdraw
+              } 
+            }
+          }
+        }
+       
+      }
+      else {
+        return "Invalid Input"
+      }
+    
+    }
+ 
+  else {
+    return this.modal.item.amount ? +this.modal.item.amount : ''
+  }  
+}
+return ""
+  }
+
+  
+  // calculateAmount() {
+  //   console.log("form.dirtyyy" + this.form.dirty)
+  //   if (this.modal.item.target && this.modal.item.amount) {
+  //     if ((+this.form.value + +this.modal.item.amount) >= (+this.modal.item.target || 0)) {
+    
+  //       return +this.modal.item.target
+  //   }
+  //   }
+ 
+  //   if (this.isDeposit && this.modal.item.amount) {
+  //     return +this.modal.item.amount + +this.form.value.deposit
+  //   }
+  //   else {
+  //     if (this.modal.item.amount) {
+  //       return +this.modal.item.amount - +this.form.value.withdraw
+
+  //     }
+  //   }
+  //   return 0
+  // }
+
 
   onExit() {
-    this.router.navigate(['../..'], {
-      relativeTo: this.route
-    })
-    this.modalService.modalOn.set(false)
+    console.log("Form.valid")
+    console.log(this.form.valid)
+
+    if (this.router.url.includes('new')) {
+      this.router.navigate(['..'], {
+        relativeTo: this.route
+      })
+    }
+    else {
+      this.router.navigate(['../..'], {
+        relativeTo: this.route
+      })
+    }
+      
   }
     
 
     @Output() modalOn = new EventEmitter<boolean>();
 
-    onDelete() {
-      this.modalService.onDelete(this.service, +this.budgetKeyReference)
+
+    onSubmit(btn: Button) {
+      btn.task(+this.currentIndex, this.form)
+      this.onExit()
     }
-    onSubmit() {
-      console.log("this.form")
-      console.log(this.form)
-      if (this.type == "Edit") {
-        this.modalService.onEdit(this.service, +this.budgetKeyReference, this.form.value)
-      }
-      if (this.type == 'Add') {
-        this.modalService.onAdd(this.service, this.form.value)
-      }
+
+    onAction(btn: Button) {
+
+    }
+    
+
+    handleUserError() {
+
     }
 
 
@@ -159,9 +272,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     
 
 }
-function validateNum(control: AbstractControl) {
-  if (isNaN(control.value)) {
-    return { notNumber: true };
-  }
-  return null;
+
+
+function isString(value: any): value is string {
+    return typeof value === "string"
 }

@@ -14,19 +14,14 @@
             <p class="text-preset-4">Total Saved</p>
             <p class="text-preset-1">${{pot.amount| money}}</p>
         </div>
-       
-        <div class="w-100 progress-container p-50 h-100 position-relative">
-            <div class="position-absolute progress" [ngStyle]="{'width': amountPercentage + '%', 'background': pot.theme.title}">
-                <!-- Calculate width -->
-            </div>
-        </div>
+       <app-progress-bar  [theme1]="pot.theme.title" [amountPercentage]="((+pot.amount)/(+pot.target) * 100).toFixed(2)"></app-progress-bar>
         <div class="space-between">
-            <p class="text-preset-5-bold">{{amountPercentage}}%</p>
+            <p class="text-preset-5-bold">{{((+pot.amount/+pot.target) * 100).toFixed(2).toString()}}%</p>
             <p class="text-preset-5">Target of ${{pot.target | money}}</p>
         </div>
     </div>
     <div class="btns br p-200 w-100 text-align-center">
-            <app-button [state]="{primary: false, secondary: true, tertiary: false, destroy: false }" class="w-100 btn no-text-wrap">+ Add Money</app-button>
-            <app-button [state]="{primary: false, secondary: true, tertiary: false, destroy: false }" class="w-100 btn no-text-wrap">Withdraw</app-button>
+            <app-button (click)="navigateTo()" [state]="{primary: false, secondary: true, tertiary: false, destroy: false }" class="w-100 btn no-text-wrap">+ Add Money</app-button>
+            <app-button (click)="navigateTo(false)" [state]="{primary: false, secondary: true, tertiary: false, destroy: false }" class="w-100 btn no-text-wrap">Withdraw</app-button>
     </div>
 </div>

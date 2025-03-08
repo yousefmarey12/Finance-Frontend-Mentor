@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MediaQuery } from '../shared-interfaces/media-query.interface';
-import { Transaction } from '../components/medium/transactions/transactions.component';
+import { Transaction } from '../components/pages/home/transactions/transactions.component';
 
 @Injectable({
   providedIn: 'root',
